@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'HLClusterMapView'
-  s.version = '1.0'
+  s.version = '1.0.1'
   s.authors = {'Anton Chebotov' => 'chebotov.anton@gmail.com'}
   s.homepage = 'https://github.com/chebotovanton/HLClusterMapView/'
   s.summary = 'MKMapView with clusterizing'
