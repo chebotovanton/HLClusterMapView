@@ -13,4 +13,6 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '7.0'
 
   s.frameworks = 'CoreLocation', 'MapKit'
+
+  s.source_files = 'ADClusterMapView/**/*.{h,m}'
 end
