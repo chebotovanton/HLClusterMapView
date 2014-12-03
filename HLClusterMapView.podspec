@@ -14,5 +14,5 @@ Pod::Spec.new do |s|
 
   s.frameworks = 'CoreLocation', 'MapKit'
 
-  s.source_files = 'ADClusterMapView/**/*.{h,m}'
+  s.source_files = 'ADClusterMapView/*.{h,m}'
 end
