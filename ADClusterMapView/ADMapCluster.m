@@ -19,6 +19,8 @@
     NSString * _clusterTitle;
 }
 
+@property (assign, nonatomic) MKMapPoint mapPoint;
+
 @end
 
 @interface ADMapCluster (Private)
@@ -244,23 +246,39 @@
 	}
 }
 
+- (MKMapPoint) getMapPoint
+{
+	if (self.mapPoint.x == 0) {
+		CLLocationCoordinate2D coord = [self anyCoordinate];
+		self.mapPoint = MKMapPointForCoordinate(coord);
+	}
+	return self.mapPoint;
+}
+
 
 #warning Select all children at some level. Pass a level as a parameter
 
 - (BOOL) isCluster:(ADMapCluster *)clusterOne tooCloseTo:(ADMapCluster *)clusterTwo mapRect:(MKMapRect)mapRect
 {
-	CLLocationCoordinate2D coordOne = [clusterOne anyCoordinate];
-	CLLocationCoordinate2D coordTwo = [clusterTwo anyCoordinate];
+	MKMapPoint pointOne = [clusterOne getMapPoint];
+	MKMapPoint pointTwo = [clusterTwo getMapPoint];
 	
-	MKMapPoint pointOne = MKMapPointForCoordinate(coordOne);
-	MKMapPoint pointTwo = MKMapPointForCoordinate(coordTwo);
+#warning bounds calculation constants
 	
-	CGFloat diffx = pointOne.x - pointTwo.x;
-	diffx = fabsf(diffx);
+	CGFloat diff = pointOne.x - pointTwo.x;
+	diff = fabsf(diff);
+	CGFloat delta = diff/mapRect.size.width;
+	if(delta > 0.04){
+		return NO;
+	}
 	
-	CGFloat delta = diffx/mapRect.size.width;
-#warning bounds calculation
-	return delta < 0.03;
+	diff = pointOne.y - pointTwo.y;
+	diff = fabsf(diff);
+	delta = diff/mapRect.size.height;
+	if(delta > 0.02){
+		return NO;
+	}
+	return YES;
 }
 
 - (BOOL) havePlaceForCluster:(ADMapCluster *)cluster allClusters:(NSArray *)clusters newLevelClusters:(NSArray *)newLevelClusters mapRect:(MKMapRect)mapRect

@@ -221,6 +221,7 @@
 
 - (BOOL) didChangeZoomFrom:(MKMapRect)oldRect to:(MKMapRect)newRect
 {
+#warning Determine zoom change
 	CGFloat delta = fabsf(newRect.size.width - oldRect.size.width);
 	return delta > 1;
 }
@@ -230,8 +231,6 @@
     if (_isAnimatingClusters) {
         _shouldComputeClusters = YES;
     } else {
-#warning recalculate pins after zoom only
-		
 		if([self didChangeZoomFrom:self.previousRect to:mapView.visibleMapRect]){
 			_isAnimatingClusters = YES;
 			[self _clusterInMapRect:self.visibleMapRect];
