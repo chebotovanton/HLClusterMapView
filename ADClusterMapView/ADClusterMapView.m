@@ -221,9 +221,9 @@
 
 - (BOOL) didChangeZoomFrom:(MKMapRect)oldRect to:(MKMapRect)newRect
 {
-#warning Determine zoom change
+#warning Determine zoom change barrier
 	CGFloat delta = fabsf(newRect.size.width - oldRect.size.width);
-	return delta > 1;
+	return delta > 100;
 }
 
 - (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
@@ -234,6 +234,7 @@
 		if([self didChangeZoomFrom:self.previousRect to:mapView.visibleMapRect]){
 			_isAnimatingClusters = YES;
 			[self _clusterInMapRect:self.visibleMapRect];
+			self.previousRect = mapView.visibleMapRect;
 		}
     }
     for (id<MKAnnotation> annotation in [self selectedAnnotations]) {
@@ -242,8 +243,6 @@
     if ([_secondaryDelegate respondsToSelector:@selector(mapView:regionDidChangeAnimated:)]) {
         [_secondaryDelegate mapView:self regionDidChangeAnimated:animated];
     }
-	
-	self.previousRect = mapView.visibleMapRect;
 }
 
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
@@ -267,7 +266,6 @@
 - (void)_clusterInMapRect:(MKMapRect)rect
 {
     NSArray * clustersToShowOnMap = [_rootMapCluster findChildrenInMapRect:rect];
-//	NSArray * clustersToShowOnMap = [_rootMapCluster find:[self _numberOfClusters] childrenInMapRect:rect];
 
     // Build an array with available annotations (eg. not moving or not staying at the same place on the map)
     NSMutableArray * availableSingleAnnotations = [[NSMutableArray alloc] init];

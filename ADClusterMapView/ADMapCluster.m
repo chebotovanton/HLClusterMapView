@@ -248,32 +248,27 @@
 
 - (MKMapPoint) getMapPoint
 {
-	if (self.mapPoint.x == 0) {
+//	if (self.mapPoint.x == 0) {
 		CLLocationCoordinate2D coord = [self anyCoordinate];
 		self.mapPoint = MKMapPointForCoordinate(coord);
-	}
+//	}
 	return self.mapPoint;
 }
-
-
-#warning Select all children at some level. Pass a level as a parameter
 
 - (BOOL) isCluster:(ADMapCluster *)clusterOne tooCloseTo:(ADMapCluster *)clusterTwo mapRect:(MKMapRect)mapRect
 {
 	MKMapPoint pointOne = [clusterOne getMapPoint];
 	MKMapPoint pointTwo = [clusterTwo getMapPoint];
 	
-#warning bounds calculation constants
-	
 	CGFloat diff = pointOne.x - pointTwo.x;
-	diff = fabsf(diff);
+	diff = fabs(diff);
 	CGFloat delta = diff/mapRect.size.width;
 	if(delta > 0.04){
 		return NO;
 	}
 	
 	diff = pointOne.y - pointTwo.y;
-	diff = fabsf(diff);
+	diff = fabs(diff);
 	delta = diff/mapRect.size.height;
 	if(delta > 0.02){
 		return NO;
@@ -283,6 +278,8 @@
 
 - (BOOL) havePlaceForCluster:(ADMapCluster *)cluster allClusters:(NSArray *)clusters newLevelClusters:(NSArray *)newLevelClusters mapRect:(MKMapRect)mapRect
 {
+//	NSLog(@"old clusters: %i", clusters.count);
+//	NSLog(@"new clusters: %i", newLevelClusters.count);
 	for(ADMapCluster * oldCluster in clusters){
 		if([self isCluster:cluster tooCloseTo:oldCluster mapRect:mapRect]){
 			return NO;
@@ -302,12 +299,19 @@
 	
 	BOOL needsNextIteration = YES;
 	
+	NSMutableArray * clustersToSplit = clusters;
+	
 	while(needsNextIteration){
 		NSMutableArray * newLevelClusters = [NSMutableArray new];
 		NSMutableArray * clustersToRemove = [NSMutableArray new];
-		for(ADMapCluster * cluster in clusters){
+		for(ADMapCluster * cluster in clustersToSplit){
 			NSArray * children = cluster.children;
 			BOOL canAddClustersChildren = (children.count > 0);
+			if (children.count == 2) {
+				if([self isCluster:children[0] tooCloseTo:children[1] mapRect:mapRect]){
+					break;
+				}
+			}
 			for(ADMapCluster * child in children){
 				if([self havePlaceForCluster:child allClusters:clusters newLevelClusters:newLevelClusters mapRect:mapRect] == NO){
 					canAddClustersChildren = NO;
@@ -324,8 +328,8 @@
 		if(newLevelClusters.count == 0){
 			needsNextIteration = NO;
 		}
+		clustersToSplit = newLevelClusters;
 	}
-	
 	return clusters;
 }
 

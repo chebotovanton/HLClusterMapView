@@ -11,8 +11,6 @@
 #import "ADMapCluster.h"
 #import "ADClusterAnnotation.h"
 
-#warning test
-
 @class ADClusterMapView;
 @protocol ADClusterMapViewDelegate <MKMapViewDelegate>
 @optional
