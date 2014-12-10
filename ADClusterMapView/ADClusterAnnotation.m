@@ -52,7 +52,8 @@ BOOL ADClusterCoordinate2DIsOffscreen(CLLocationCoordinate2D coord) {
     self.coordinate = kADCoordinate2DOffscreen;
 }
 
-- (NSArray *)originalAnnotations {
+- (NSArray *)originalAnnotations
+{
     NSAssert(self.cluster != nil, @"This annotation should have a cluster assigned!");
     return self.cluster.originalAnnotations;
 }

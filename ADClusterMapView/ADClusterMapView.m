@@ -228,15 +228,16 @@
 
 - (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
 {
-    if (_isAnimatingClusters) {
-        _shouldComputeClusters = YES;
-    } else {
-		if([self didChangeZoomFrom:self.previousRect to:mapView.visibleMapRect]){
+	if([self didChangeZoomFrom:self.previousRect to:mapView.visibleMapRect]){
+		if (_isAnimatingClusters) {
+			_shouldComputeClusters = YES;
+		} else {
 			_isAnimatingClusters = YES;
 			[self _clusterInMapRect:self.visibleMapRect];
 			self.previousRect = mapView.visibleMapRect;
 		}
     }
+	
     for (id<MKAnnotation> annotation in [self selectedAnnotations]) {
         [self deselectAnnotation:annotation animated:YES];
     }

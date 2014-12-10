@@ -19,8 +19,6 @@
     NSString * _clusterTitle;
 }
 
-@property (assign, nonatomic) MKMapPoint mapPoint;
-
 @end
 
 @interface ADMapCluster (Private)
@@ -248,11 +246,8 @@
 
 - (MKMapPoint) getMapPoint
 {
-//	if (self.mapPoint.x == 0) {
-		CLLocationCoordinate2D coord = [self anyCoordinate];
-		self.mapPoint = MKMapPointForCoordinate(coord);
-//	}
-	return self.mapPoint;
+	CLLocationCoordinate2D coord = [self anyCoordinate];
+	return MKMapPointForCoordinate(coord);
 }
 
 - (BOOL) isCluster:(ADMapCluster *)clusterOne tooCloseTo:(ADMapCluster *)clusterTwo mapRect:(MKMapRect)mapRect
@@ -278,8 +273,6 @@
 
 - (BOOL) havePlaceForCluster:(ADMapCluster *)cluster allClusters:(NSArray *)clusters newLevelClusters:(NSArray *)newLevelClusters mapRect:(MKMapRect)mapRect
 {
-//	NSLog(@"old clusters: %i", clusters.count);
-//	NSLog(@"new clusters: %i", newLevelClusters.count);
 	for(ADMapCluster * oldCluster in clusters){
 		if([self isCluster:cluster tooCloseTo:oldCluster mapRect:mapRect]){
 			return NO;
