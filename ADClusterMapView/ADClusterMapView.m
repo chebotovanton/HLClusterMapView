@@ -36,7 +36,8 @@
 
 @implementation ADClusterMapView
 
-- (void)setAnnotations:(NSArray *)annotations {
+- (void)setAnnotations:(NSArray *)annotations
+{
     if (!_isSettingAnnotations) {
         _originalAnnotations = annotations;
         _isSettingAnnotations = YES;
@@ -116,7 +117,8 @@
     [super selectAnnotation:annotation animated:animated];
 }
 
-- (NSArray *)displayedAnnotations {
+- (NSArray *)displayedAnnotations
+{
     NSMutableArray * displayedAnnotations = [[NSMutableArray alloc] init];
     for (ADClusterAnnotation * annotation in [_singleAnnotationsPool arrayByAddingObjectsFromArray:_clusterAnnotationsPool]) {
         NSAssert([annotation isKindOfClass:[ADClusterAnnotation class]], @"Unexpected annotation!");
@@ -128,7 +130,8 @@
 }
 
 // careful, the implementation of the following method is slow
-- (NSArray *)annotations {
+- (NSArray *)annotations
+{
     NSArray * otherAnnotations = [[super annotations] filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
         return  ![evaluatedObject isKindOfClass: [ADClusterAnnotation class]];
     }]];
@@ -177,7 +180,7 @@
     }
 }
 
-- (void)animationDidStop:(NSString *)animationID finished:(NSNumber *)finished context:(void *)context
+- (void)animationDidStop
 {
     for (ADClusterAnnotation * annotation in _clusterAnnotations) {
         if ([annotation isKindOfClass:[ADClusterAnnotation class]]) {
@@ -375,18 +378,19 @@
             [annotation reset];
         }
     }
-    [UIView beginAnimations:@"ADClusterMapViewAnimation" context:NULL];
-    [UIView setAnimationBeginsFromCurrentState:NO];
-    [UIView setAnimationDelegate:self];
-    [UIView setAnimationDuration:0.5f];
-    for (ADClusterAnnotation * annotation in _clusterAnnotations) {
-        if (![annotation isKindOfClass:[MKUserLocation class]] && annotation.cluster) {
-            NSAssert(!ADClusterCoordinate2DIsOffscreen(annotation.coordinate), @"annotation.coordinate not valid! Can't animate from an invalid coordinate (inconsistent result)!");
-            annotation.coordinate = annotation.cluster.clusterCoordinate;
-        }
-    }
-    [UIView commitAnimations];
+#warning debug
+	[UIView animateWithDuration:0.5
+					 animations:^{
+						 for (ADClusterAnnotation * annotation in _clusterAnnotations) {
+							if (![annotation isKindOfClass:[MKUserLocation class]] && annotation.cluster) {
+									NSAssert(!ADClusterCoordinate2DIsOffscreen(annotation.coordinate), @"annotation.coordinate not valid! Can't animate from an invalid coordinate (inconsistent result)!");
+								annotation.coordinate = annotation.cluster.clusterCoordinate;
+							}
+						 }
 
+					 } completion:^(BOOL finished) {
+						 [self animationDidStop];
+					 }];
 
     // Add not-yet-annotated clusters
     for (ADMapCluster * cluster in clustersToShowOnMap) {

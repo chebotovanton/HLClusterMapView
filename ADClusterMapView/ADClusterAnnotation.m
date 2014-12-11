@@ -47,7 +47,8 @@ BOOL ADClusterCoordinate2DIsOffscreen(CLLocationCoordinate2D coord) {
     return self.cluster.subtitle;
 }
 
-- (void)reset {
+- (void)reset
+{
     self.cluster = nil;
     self.coordinate = kADCoordinate2DOffscreen;
 }

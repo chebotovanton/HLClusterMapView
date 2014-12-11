@@ -258,7 +258,7 @@
 	CGFloat diff = pointOne.x - pointTwo.x;
 	diff = fabs(diff);
 	CGFloat delta = diff/mapRect.size.width;
-	if(delta > 0.04){
+	if(delta > 0.05){
 		return NO;
 	}
 	
@@ -305,12 +305,15 @@
 					break;
 				}
 			}
+			[clusters removeObject:cluster];
 			for(ADMapCluster * child in children){
+				
 				if([self havePlaceForCluster:child allClusters:clusters newLevelClusters:newLevelClusters mapRect:mapRect] == NO){
 					canAddClustersChildren = NO;
 					break;
 				}
 			}
+			[clusters addObject:cluster];
 			if(canAddClustersChildren){
 				[newLevelClusters addObjectsFromArray:children];
 				[clustersToRemove addObject:cluster];
