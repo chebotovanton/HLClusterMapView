@@ -10,7 +10,8 @@
 
 
 BOOL ADClusterCoordinate2DIsOffscreen(CLLocationCoordinate2D coord) {
-    return (coord.latitude == kADCoordinate2DOffscreen.latitude && coord.longitude == kADCoordinate2DOffscreen.longitude);
+	BOOL result = (coord.latitude == kADCoordinate2DOffscreen.latitude && coord.longitude == kADCoordinate2DOffscreen.longitude);
+	return result;
 }
 
 @implementation ADClusterAnnotation

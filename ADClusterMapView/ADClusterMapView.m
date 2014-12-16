@@ -11,6 +11,8 @@
 #import "ADClusterAnnotation.h"
 #import "ADMapPointAnnotation.h"
 
+#define HL_PIN_GROUPING_ANIMATION_DURATION 0.5f
+
 @interface ADClusterMapView () {
 @private
     id <ADClusterMapViewDelegate>  _secondaryDelegate;
@@ -66,6 +68,7 @@
         if ([_secondaryDelegate respondsToSelector:@selector(clusterTitleForMapView:)]) {
             clusterTitle = [_secondaryDelegate clusterTitleForMapView:self];
         }
+		
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
             // use wrapper annotations that expose a MKMapPoint property instead of a CLLocationCoordinate2D property
             NSMutableArray * mapPointAnnotations = [[NSMutableArray alloc] initWithCapacity:annotations.count];
@@ -240,10 +243,6 @@
 			self.previousRect = mapView.visibleMapRect;
 		}
     }
-	
-    for (id<MKAnnotation> annotation in [self selectedAnnotations]) {
-        [self deselectAnnotation:annotation animated:YES];
-    }
     if ([_secondaryDelegate respondsToSelector:@selector(mapView:regionDidChangeAnimated:)]) {
         [_secondaryDelegate mapView:self regionDidChangeAnimated:animated];
     }
@@ -379,17 +378,19 @@
         }
     }
 #warning debug
-	[UIView animateWithDuration:0.5
+	[UIView animateWithDuration:HL_PIN_GROUPING_ANIMATION_DURATION
+						  delay:0.0
+						options:UIViewAnimationOptionAllowAnimatedContent | UIViewAnimationOptionLayoutSubviews |UIViewAnimationOptionBeginFromCurrentState
 					 animations:^{
 						 for (ADClusterAnnotation * annotation in _clusterAnnotations) {
-							if (![annotation isKindOfClass:[MKUserLocation class]] && annotation.cluster) {
+							 if (![annotation isKindOfClass:[MKUserLocation class]] && annotation.cluster) {
 									NSAssert(!ADClusterCoordinate2DIsOffscreen(annotation.coordinate), @"annotation.coordinate not valid! Can't animate from an invalid coordinate (inconsistent result)!");
-								annotation.coordinate = annotation.cluster.clusterCoordinate;
-							}
+								 annotation.coordinate = annotation.cluster.clusterCoordinate;
+							 }
 						 }
-
-					 } completion:^(BOOL finished) {
-						 [self animationDidStop];
+					 }
+					 completion:^(BOOL finished) {
+						[self animationDidStop];
 					 }];
 
     // Add not-yet-annotated clusters
@@ -425,7 +426,8 @@
     }
 }
 
-- (NSInteger)_numberOfClusters {
+- (NSInteger)_numberOfClusters
+{
     NSInteger numberOfClusters = 32; // default value
     if ([_secondaryDelegate respondsToSelector:@selector(numberOfClustersInMapView:)]) {
         numberOfClusters = [_secondaryDelegate numberOfClustersInMapView:self];
