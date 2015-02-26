@@ -378,9 +378,11 @@
         }
     }
 #warning debug
-	[UIView animateWithDuration:HL_PIN_GROUPING_ANIMATION_DURATION
+	NSLog(@"Group animation started");
+	[UIView animateWithDuration:0.3
 						  delay:0.0
-						options:UIViewAnimationOptionAllowAnimatedContent | UIViewAnimationOptionLayoutSubviews |UIViewAnimationOptionBeginFromCurrentState
+						options:UIViewAnimationOptionBeginFromCurrentState |
+							UIViewAnimationOptionAllowUserInteraction
 					 animations:^{
 						 for (ADClusterAnnotation * annotation in _clusterAnnotations) {
 							 if (![annotation isKindOfClass:[MKUserLocation class]] && annotation.cluster) {
@@ -390,6 +392,7 @@
 						 }
 					 }
 					 completion:^(BOOL finished) {
+						 NSLog(@"Group animation finished: %d", finished);
 						[self animationDidStop];
 					 }];
 
