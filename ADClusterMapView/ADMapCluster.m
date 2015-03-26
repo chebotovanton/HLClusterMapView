@@ -32,6 +32,8 @@
 - (id)initWithAnnotations:(NSArray *)annotations atDepth:(NSInteger)depth inMapRect:(MKMapRect)mapRect gamma:(double)gamma clusterTitle:(NSString *)clusterTitle showSubtitle:(BOOL)showSubtitle {
     self = [super init];
     if (self) {
+        self.annotationCollapseSize = CGSizeMake(4.4, 20.0);
+        
         _depth = depth;
         _mapRect = mapRect;
         _clusterTitle = clusterTitle;
@@ -250,43 +252,50 @@
 	return MKMapPointForCoordinate(coord);
 }
 
-- (BOOL) isCluster:(ADMapCluster *)clusterOne tooCloseTo:(ADMapCluster *)clusterTwo mapRect:(MKMapRect)mapRect
+- (BOOL) isCluster:(ADMapCluster *)clusterOne tooCloseTo:(ADMapCluster *)clusterTwo mapRect:(MKMapRect)mapRect mapViewSize:(CGSize)mapViewSize
 {
 	MKMapPoint pointOne = [clusterOne getMapPoint];
 	MKMapPoint pointTwo = [clusterTwo getMapPoint];
 	
+    int length = clusterOne.title.length + clusterTwo.title.length;
+    
 	CGFloat diff = pointOne.x - pointTwo.x;
 	diff = fabs(diff);
-	CGFloat delta = diff/mapRect.size.width;
-	if(delta > 0.05){
+	CGFloat delta = (diff/mapRect.size.width) * mapViewSize.width;
+
+	if(delta > self.annotationCollapseSize.width * length + 0.02){
 		return NO;
 	}
 	
 	diff = pointOne.y - pointTwo.y;
 	diff = fabs(diff);
-	delta = diff/mapRect.size.height;
-	if(delta > 0.02){
+	delta = (diff/mapRect.size.height) * mapViewSize.height;
+	if(delta > self.annotationCollapseSize.height){
 		return NO;
 	}
 	return YES;
 }
 
-- (BOOL) havePlaceForCluster:(ADMapCluster *)cluster allClusters:(NSArray *)clusters newLevelClusters:(NSArray *)newLevelClusters mapRect:(MKMapRect)mapRect
+- (BOOL) hasPlaceForCluster:(ADMapCluster *)cluster
+                allClusters:(NSArray *)clusters
+           newLevelClusters:(NSArray *)newLevelClusters
+                    mapRect:(MKMapRect)mapRect
+                mapViewSize:(CGSize)mapViewSize
 {
 	for(ADMapCluster * oldCluster in clusters){
-		if([self isCluster:cluster tooCloseTo:oldCluster mapRect:mapRect]){
+		if([self isCluster:cluster tooCloseTo:oldCluster mapRect:mapRect mapViewSize:mapViewSize]){
 			return NO;
 		}
 	}
 	for(ADMapCluster * oldCluster in newLevelClusters){
-		if([self isCluster:cluster tooCloseTo:oldCluster mapRect:mapRect]){
+		if([self isCluster:cluster tooCloseTo:oldCluster mapRect:mapRect mapViewSize:mapViewSize]){
 			return NO;
 		}
 	}
 	return YES;
 }
 
-- (NSArray *)findChildrenInMapRect:(MKMapRect)mapRect
+- (NSArray *)findChildrenInMapRect:(MKMapRect)mapRect mapViewSize:(CGSize)mapViewSize
 {
 	NSMutableArray * clusters = [NSMutableArray arrayWithObject:self];
 	
@@ -301,14 +310,14 @@
 			NSArray * children = cluster.children;
 			BOOL canAddClustersChildren = (children.count > 0);
 			if (children.count == 2) {
-				if([self isCluster:children[0] tooCloseTo:children[1] mapRect:mapRect]){
+				if([self isCluster:children[0] tooCloseTo:children[1] mapRect:mapRect mapViewSize:mapViewSize]){
 					break;
 				}
 			}
 			[clusters removeObject:cluster];
 			for(ADMapCluster * child in children){
 				
-				if([self havePlaceForCluster:child allClusters:clusters newLevelClusters:newLevelClusters mapRect:mapRect] == NO){
+				if(![self hasPlaceForCluster:child allClusters:clusters newLevelClusters:newLevelClusters mapRect:mapRect mapViewSize:mapViewSize]){
 					canAddClustersChildren = NO;
 					break;
 				}
@@ -396,7 +405,8 @@
     return _annotation.annotation == annotation || [_leftChild isRootClusterForAnnotation:annotation] || [_rightChild isRootClusterForAnnotation:annotation];
 }
 
-- (NSString *)title {
+- (NSString *)title
+{
     if (!self.annotation) {
         if (_clusterTitle) {
             return [NSString stringWithFormat:_clusterTitle, [self numberOfChildren]];

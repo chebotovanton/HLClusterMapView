@@ -268,7 +268,7 @@
 @implementation ADClusterMapView (Private)
 - (void)_clusterInMapRect:(MKMapRect)rect
 {
-    NSArray * clustersToShowOnMap = [_rootMapCluster findChildrenInMapRect:rect];
+    NSArray * clustersToShowOnMap = [_rootMapCluster findChildrenInMapRect:rect mapViewSize:self.frame.size];
 
     // Build an array with available annotations (eg. not moving or not staying at the same place on the map)
     NSMutableArray * availableSingleAnnotations = [[NSMutableArray alloc] init];
