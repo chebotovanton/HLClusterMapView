@@ -269,6 +269,20 @@
 - (void)_clusterInMapRect:(MKMapRect)rect
 {
     NSArray * clustersToShowOnMap = [_rootMapCluster findChildrenInMapRect:rect mapViewSize:self.frame.size];
+    
+    for (ADClusterAnnotation * annotation in [_singleAnnotationsPool arrayByAddingObjectsFromArray:_clusterAnnotationsPool]) {
+        [annotation reset];
+    }
+    
+    for (int i = 0; i < clustersToShowOnMap.count; i++){
+        ADMapCluster * cluster = clustersToShowOnMap[i];
+        ADClusterAnnotation * annotation = _singleAnnotationsPool[i];
+        annotation.cluster = cluster;
+        annotation.coordinate = [cluster anyCoordinate];
+    }
+    
+    [self animationDidStop];
+    return;
 
     // Build an array with available annotations (eg. not moving or not staying at the same place on the map)
     NSMutableArray * availableSingleAnnotations = [[NSMutableArray alloc] init];

@@ -21,6 +21,8 @@
 
 @property (nonatomic, assign) CGSize annotationCollapseSize;
 
+#warning azaza
+@property (nonatomic, assign) ADMapCluster * ancestor;
 
 
 - (id)initWithAnnotations:(NSArray *)annotations atDepth:(NSInteger)depth inMapRect:(MKMapRect)mapRect gamma:(double)gamma clusterTitle:(NSString *)clusterTitle showSubtitle:(BOOL)showSubtitle;
@@ -32,4 +34,5 @@
 - (BOOL)isRootClusterForAnnotation:(id<MKAnnotation>)annotation;
 - (NSInteger)numberOfChildren;
 - (NSArray *)namesOfChildren;
+- (CLLocationCoordinate2D) anyCoordinate;
 @end
