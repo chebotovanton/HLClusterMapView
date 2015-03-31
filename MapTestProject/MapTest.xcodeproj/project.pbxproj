@@ -1,0 +1,639 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		9F0AC8611ACABF48008A9FD8 /* ADClusterAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F0AC85A1ACABF48008A9FD8 /* ADClusterAnnotation.m */; };
+		9F0AC8621ACABF48008A9FD8 /* ADClusterMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F0AC85C1ACABF48008A9FD8 /* ADClusterMapView.m */; };
+		9F0AC8631ACABF48008A9FD8 /* ADMapCluster.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F0AC85E1ACABF48008A9FD8 /* ADMapCluster.m */; };
+		9F0AC8641ACABF48008A9FD8 /* ADMapPointAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F0AC8601ACABF48008A9FD8 /* ADMapPointAnnotation.m */; };
+		9F7093C71AC2A92900165919 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F7093C61AC2A92900165919 /* main.m */; };
+		9F7093CA1AC2A92900165919 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F7093C91AC2A92900165919 /* AppDelegate.m */; };
+		9F7093CD1AC2A92900165919 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F7093CC1AC2A92900165919 /* ViewController.m */; };
+		9F7093D01AC2A92900165919 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F7093CE1AC2A92900165919 /* Main.storyboard */; };
+		9F7093D21AC2A92900165919 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9F7093D11AC2A92900165919 /* Images.xcassets */; };
+		9F7093D51AC2A92900165919 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F7093D31AC2A92900165919 /* LaunchScreen.xib */; };
+		9F70940A1AC2AA2C00165919 /* HLGroupCalloutCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F7093ED1AC2AA2C00165919 /* HLGroupCalloutCell.m */; };
+		9F70940B1AC2AA2C00165919 /* HLGroupCalloutCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F7093EE1AC2AA2C00165919 /* HLGroupCalloutCell.xib */; };
+		9F70940C1AC2AA2C00165919 /* HLGroupCalloutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F7093F01AC2AA2C00165919 /* HLGroupCalloutView.m */; };
+		9F70940D1AC2AA2C00165919 /* HLGroupCalloutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F7093F11AC2AA2C00165919 /* HLGroupCalloutView.xib */; };
+		9F70940E1AC2AA2C00165919 /* HLHotelCalloutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F7093F31AC2AA2C00165919 /* HLHotelCalloutView.m */; };
+		9F70940F1AC2AA2C00165919 /* HLHotelCalloutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F7093F41AC2AA2C00165919 /* HLHotelCalloutView.xib */; };
+		9F7094101AC2AA2C00165919 /* HLMapVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F7093F61AC2AA2C00165919 /* HLMapVC.m */; };
+		9F7094111AC2AA2C00165919 /* HLMapVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F7093F71AC2AA2C00165919 /* HLMapVC.xib */; };
+		9F7094121AC2AA2C00165919 /* HLMapVC~iphone6+.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F7093F81AC2AA2C00165919 /* HLMapVC~iphone6+.xib */; };
+		9F7094131AC2AA2C00165919 /* HLHotelsMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F7093FB1AC2AA2C00165919 /* HLHotelsMapView.m */; };
+		9F7094141AC2AA2C00165919 /* HLMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F7093FD1AC2AA2C00165919 /* HLMapView.m */; };
+		9F7094151AC2AA2C00165919 /* HLVariantsMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F7094001AC2AA2C00165919 /* HLVariantsMapView.m */; };
+		9F7094161AC2AA2C00165919 /* HLAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F7094031AC2AA2C00165919 /* HLAnnotationView.m */; };
+		9F7094171AC2AA2C00165919 /* HLGroupAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F7094051AC2AA2C00165919 /* HLGroupAnnotationView.m */; };
+		9F7094181AC2AA2C00165919 /* HLMapAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F7094071AC2AA2C00165919 /* HLMapAnnotation.m */; };
+		9F7094191AC2AA2C00165919 /* HLSingleAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F7094091AC2AA2C00165919 /* HLSingleAnnotationView.m */; };
+		9F70941D1AC2AB3800165919 /* HLResultVariant.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F70941C1AC2AB3800165919 /* HLResultVariant.m */; };
+		9F7094221AC2AB7B00165919 /* HLCommonVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F70941F1AC2AB7B00165919 /* HLCommonVC.m */; };
+		9F7094231AC2AB7B00165919 /* HLRoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F7094211AC2AB7B00165919 /* HLRoom.m */; };
+		9F7094261AC2AC6700165919 /* HLHotel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F7094251AC2AC6700165919 /* HLHotel.m */; };
+		9F7094291AC2ACA700165919 /* HLDistanceCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F7094281AC2ACA700165919 /* HLDistanceCalculator.m */; };
+		9F70942C1AC2AD2C00165919 /* StringUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F70942B1AC2AD2C00165919 /* StringUtils.m */; };
+		9F70942F1AC2AD6B00165919 /* HLSearchInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F70942E1AC2AD6B00165919 /* HLSearchInfo.m */; };
+		9F7094321AC2ADCA00165919 /* HLCity.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F7094311AC2ADCA00165919 /* HLCity.m */; };
+		9F7094351AC2ADD200165919 /* HLApiCoordinate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F7094341AC2ADD200165919 /* HLApiCoordinate.m */; };
+		9F7094381AC2B15B00165919 /* HLCurrency.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F7094371AC2B15B00165919 /* HLCurrency.m */; };
+		9F70943B1AC2B18B00165919 /* DateUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F70943A1AC2B18B00165919 /* DateUtil.m */; };
+		9F70943E1AC2B38E00165919 /* HLLocaleInspector.m in Sources */ = {isa = PBXBuildFile; fileRef = 9F70943D1AC2B38E00165919 /* HLLocaleInspector.m */; };
+		9F7094461AC2C9A100165919 /* pinImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F7094401AC2C9A100165919 /* pinImage.png */; };
+		9F7094471AC2C9A100165919 /* pinImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F7094411AC2C9A100165919 /* pinImage@2x.png */; };
+		9F7094481AC2C9A100165919 /* pinImageLeft.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F7094421AC2C9A100165919 /* pinImageLeft.png */; };
+		9F7094491AC2C9A100165919 /* pinImageLeft@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F7094431AC2C9A100165919 /* pinImageLeft@2x.png */; };
+		9F70944A1AC2C9A100165919 /* pinImageRight.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F7094441AC2C9A100165919 /* pinImageRight.png */; };
+		9F70944B1AC2C9A100165919 /* pinImageRight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F7094451AC2C9A100165919 /* pinImageRight@2x.png */; };
+		9F7094501AC2C9FF00165919 /* pinGroupImageLeft.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F70944C1AC2C9FF00165919 /* pinGroupImageLeft.png */; };
+		9F7094511AC2C9FF00165919 /* pinGroupImageLeft@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F70944D1AC2C9FF00165919 /* pinGroupImageLeft@2x.png */; };
+		9F7094521AC2C9FF00165919 /* pinGroupImageRight.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F70944E1AC2C9FF00165919 /* pinGroupImageRight.png */; };
+		9F7094531AC2C9FF00165919 /* pinGroupImageRight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F70944F1AC2C9FF00165919 /* pinGroupImageRight@2x.png */; };
+		9FA2125F1AC438E600CCEDAF /* HLHotelsContentLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FA212531AC438E600CCEDAF /* HLHotelsContentLoader.m */; };
+		9FA212651AC4396B00CCEDAF /* HLVariantsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FA212641AC4396B00CCEDAF /* HLVariantsManager.m */; };
+		9FA212681AC43CF700CCEDAF /* HLAbstractRoomsLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FA212671AC43CF700CCEDAF /* HLAbstractRoomsLoader.m */; };
+		9FA2126B1AC4424E00CCEDAF /* rooms.json in Resources */ = {isa = PBXBuildFile; fileRef = 9FA212691AC4424E00CCEDAF /* rooms.json */; };
+		9FA2126C1AC4424E00CCEDAF /* hotels.json in Resources */ = {isa = PBXBuildFile; fileRef = 9FA2126A1AC4424E00CCEDAF /* hotels.json */; };
+		9FA2126F1AC446E700CCEDAF /* NSDictionary+StringForKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FA2126E1AC446E700CCEDAF /* NSDictionary+StringForKey.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		9F0AC8591ACABF48008A9FD8 /* ADClusterAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADClusterAnnotation.h; sourceTree = "<group>"; };
+		9F0AC85A1ACABF48008A9FD8 /* ADClusterAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADClusterAnnotation.m; sourceTree = "<group>"; };
+		9F0AC85B1ACABF48008A9FD8 /* ADClusterMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADClusterMapView.h; sourceTree = "<group>"; };
+		9F0AC85C1ACABF48008A9FD8 /* ADClusterMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADClusterMapView.m; sourceTree = "<group>"; };
+		9F0AC85D1ACABF48008A9FD8 /* ADMapCluster.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADMapCluster.h; sourceTree = "<group>"; };
+		9F0AC85E1ACABF48008A9FD8 /* ADMapCluster.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADMapCluster.m; sourceTree = "<group>"; };
+		9F0AC85F1ACABF48008A9FD8 /* ADMapPointAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADMapPointAnnotation.h; sourceTree = "<group>"; };
+		9F0AC8601ACABF48008A9FD8 /* ADMapPointAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ADMapPointAnnotation.m; sourceTree = "<group>"; };
+		9F7093C11AC2A92900165919 /* MapTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MapTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9F7093C51AC2A92900165919 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9F7093C61AC2A92900165919 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		9F7093C81AC2A92900165919 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		9F7093C91AC2A92900165919 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		9F7093CB1AC2A92900165919 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		9F7093CC1AC2A92900165919 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		9F7093CF1AC2A92900165919 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		9F7093D11AC2A92900165919 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		9F7093D41AC2A92900165919 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		9F7093EC1AC2AA2C00165919 /* HLGroupCalloutCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLGroupCalloutCell.h; sourceTree = "<group>"; };
+		9F7093ED1AC2AA2C00165919 /* HLGroupCalloutCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLGroupCalloutCell.m; sourceTree = "<group>"; };
+		9F7093EE1AC2AA2C00165919 /* HLGroupCalloutCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HLGroupCalloutCell.xib; sourceTree = "<group>"; };
+		9F7093EF1AC2AA2C00165919 /* HLGroupCalloutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLGroupCalloutView.h; sourceTree = "<group>"; };
+		9F7093F01AC2AA2C00165919 /* HLGroupCalloutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLGroupCalloutView.m; sourceTree = "<group>"; };
+		9F7093F11AC2AA2C00165919 /* HLGroupCalloutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HLGroupCalloutView.xib; sourceTree = "<group>"; };
+		9F7093F21AC2AA2C00165919 /* HLHotelCalloutView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLHotelCalloutView.h; sourceTree = "<group>"; };
+		9F7093F31AC2AA2C00165919 /* HLHotelCalloutView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLHotelCalloutView.m; sourceTree = "<group>"; };
+		9F7093F41AC2AA2C00165919 /* HLHotelCalloutView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HLHotelCalloutView.xib; sourceTree = "<group>"; };
+		9F7093F51AC2AA2C00165919 /* HLMapVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLMapVC.h; sourceTree = "<group>"; };
+		9F7093F61AC2AA2C00165919 /* HLMapVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLMapVC.m; sourceTree = "<group>"; };
+		9F7093F71AC2AA2C00165919 /* HLMapVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HLMapVC.xib; sourceTree = "<group>"; };
+		9F7093F81AC2AA2C00165919 /* HLMapVC~iphone6+.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "HLMapVC~iphone6+.xib"; sourceTree = "<group>"; };
+		9F7093FA1AC2AA2C00165919 /* HLHotelsMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLHotelsMapView.h; sourceTree = "<group>"; };
+		9F7093FB1AC2AA2C00165919 /* HLHotelsMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLHotelsMapView.m; sourceTree = "<group>"; };
+		9F7093FC1AC2AA2C00165919 /* HLMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLMapView.h; sourceTree = "<group>"; };
+		9F7093FD1AC2AA2C00165919 /* HLMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLMapView.m; sourceTree = "<group>"; };
+		9F7093FE1AC2AA2C00165919 /* HLMapViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLMapViewDelegate.h; sourceTree = "<group>"; };
+		9F7093FF1AC2AA2C00165919 /* HLVariantsMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLVariantsMapView.h; sourceTree = "<group>"; };
+		9F7094001AC2AA2C00165919 /* HLVariantsMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLVariantsMapView.m; sourceTree = "<group>"; };
+		9F7094021AC2AA2C00165919 /* HLAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLAnnotationView.h; sourceTree = "<group>"; };
+		9F7094031AC2AA2C00165919 /* HLAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLAnnotationView.m; sourceTree = "<group>"; };
+		9F7094041AC2AA2C00165919 /* HLGroupAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLGroupAnnotationView.h; sourceTree = "<group>"; };
+		9F7094051AC2AA2C00165919 /* HLGroupAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLGroupAnnotationView.m; sourceTree = "<group>"; };
+		9F7094061AC2AA2C00165919 /* HLMapAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLMapAnnotation.h; sourceTree = "<group>"; };
+		9F7094071AC2AA2C00165919 /* HLMapAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLMapAnnotation.m; sourceTree = "<group>"; };
+		9F7094081AC2AA2C00165919 /* HLSingleAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLSingleAnnotationView.h; sourceTree = "<group>"; };
+		9F7094091AC2AA2C00165919 /* HLSingleAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLSingleAnnotationView.m; sourceTree = "<group>"; };
+		9F70941B1AC2AB3800165919 /* HLResultVariant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLResultVariant.h; sourceTree = "<group>"; };
+		9F70941C1AC2AB3800165919 /* HLResultVariant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLResultVariant.m; sourceTree = "<group>"; };
+		9F70941E1AC2AB7B00165919 /* HLCommonVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLCommonVC.h; sourceTree = "<group>"; };
+		9F70941F1AC2AB7B00165919 /* HLCommonVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLCommonVC.m; sourceTree = "<group>"; };
+		9F7094201AC2AB7B00165919 /* HLRoom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLRoom.h; sourceTree = "<group>"; };
+		9F7094211AC2AB7B00165919 /* HLRoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLRoom.m; sourceTree = "<group>"; };
+		9F7094241AC2AC6700165919 /* HLHotel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLHotel.h; sourceTree = "<group>"; };
+		9F7094251AC2AC6700165919 /* HLHotel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLHotel.m; sourceTree = "<group>"; };
+		9F7094271AC2ACA700165919 /* HLDistanceCalculator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLDistanceCalculator.h; sourceTree = "<group>"; };
+		9F7094281AC2ACA700165919 /* HLDistanceCalculator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLDistanceCalculator.m; sourceTree = "<group>"; };
+		9F70942A1AC2AD2C00165919 /* StringUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringUtils.h; sourceTree = "<group>"; };
+		9F70942B1AC2AD2C00165919 /* StringUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StringUtils.m; sourceTree = "<group>"; };
+		9F70942D1AC2AD6B00165919 /* HLSearchInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLSearchInfo.h; sourceTree = "<group>"; };
+		9F70942E1AC2AD6B00165919 /* HLSearchInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLSearchInfo.m; sourceTree = "<group>"; };
+		9F7094301AC2ADCA00165919 /* HLCity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLCity.h; sourceTree = "<group>"; };
+		9F7094311AC2ADCA00165919 /* HLCity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLCity.m; sourceTree = "<group>"; };
+		9F7094331AC2ADD200165919 /* HLApiCoordinate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLApiCoordinate.h; sourceTree = "<group>"; };
+		9F7094341AC2ADD200165919 /* HLApiCoordinate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLApiCoordinate.m; sourceTree = "<group>"; };
+		9F7094361AC2B15B00165919 /* HLCurrency.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLCurrency.h; sourceTree = "<group>"; };
+		9F7094371AC2B15B00165919 /* HLCurrency.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLCurrency.m; sourceTree = "<group>"; };
+		9F7094391AC2B18B00165919 /* DateUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateUtil.h; sourceTree = "<group>"; };
+		9F70943A1AC2B18B00165919 /* DateUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateUtil.m; sourceTree = "<group>"; };
+		9F70943C1AC2B38E00165919 /* HLLocaleInspector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLLocaleInspector.h; sourceTree = "<group>"; };
+		9F70943D1AC2B38E00165919 /* HLLocaleInspector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLLocaleInspector.m; sourceTree = "<group>"; };
+		9F7094401AC2C9A100165919 /* pinImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pinImage.png; sourceTree = "<group>"; };
+		9F7094411AC2C9A100165919 /* pinImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pinImage@2x.png"; sourceTree = "<group>"; };
+		9F7094421AC2C9A100165919 /* pinImageLeft.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pinImageLeft.png; sourceTree = "<group>"; };
+		9F7094431AC2C9A100165919 /* pinImageLeft@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pinImageLeft@2x.png"; sourceTree = "<group>"; };
+		9F7094441AC2C9A100165919 /* pinImageRight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pinImageRight.png; sourceTree = "<group>"; };
+		9F7094451AC2C9A100165919 /* pinImageRight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pinImageRight@2x.png"; sourceTree = "<group>"; };
+		9F70944C1AC2C9FF00165919 /* pinGroupImageLeft.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pinGroupImageLeft.png; sourceTree = "<group>"; };
+		9F70944D1AC2C9FF00165919 /* pinGroupImageLeft@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pinGroupImageLeft@2x.png"; sourceTree = "<group>"; };
+		9F70944E1AC2C9FF00165919 /* pinGroupImageRight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pinGroupImageRight.png; sourceTree = "<group>"; };
+		9F70944F1AC2C9FF00165919 /* pinGroupImageRight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pinGroupImageRight@2x.png"; sourceTree = "<group>"; };
+		9FA212521AC438E600CCEDAF /* HLHotelsContentLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLHotelsContentLoader.h; sourceTree = "<group>"; };
+		9FA212531AC438E600CCEDAF /* HLHotelsContentLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLHotelsContentLoader.m; sourceTree = "<group>"; };
+		9FA212631AC4396B00CCEDAF /* HLVariantsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLVariantsManager.h; sourceTree = "<group>"; };
+		9FA212641AC4396B00CCEDAF /* HLVariantsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLVariantsManager.m; sourceTree = "<group>"; };
+		9FA212661AC43CF700CCEDAF /* HLAbstractRoomsLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HLAbstractRoomsLoader.h; sourceTree = "<group>"; };
+		9FA212671AC43CF700CCEDAF /* HLAbstractRoomsLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HLAbstractRoomsLoader.m; sourceTree = "<group>"; };
+		9FA212691AC4424E00CCEDAF /* rooms.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = rooms.json; sourceTree = "<group>"; };
+		9FA2126A1AC4424E00CCEDAF /* hotels.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = hotels.json; sourceTree = "<group>"; };
+		9FA2126D1AC446E700CCEDAF /* NSDictionary+StringForKey.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+StringForKey.h"; sourceTree = "<group>"; };
+		9FA2126E1AC446E700CCEDAF /* NSDictionary+StringForKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+StringForKey.m"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9F7093BE1AC2A92900165919 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		95F6994EB229A489E7A4D8B8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9F0AC8581ACABF48008A9FD8 /* ADClusterMapView */ = {
+			isa = PBXGroup;
+			children = (
+				9F0AC8591ACABF48008A9FD8 /* ADClusterAnnotation.h */,
+				9F0AC85A1ACABF48008A9FD8 /* ADClusterAnnotation.m */,
+				9F0AC85B1ACABF48008A9FD8 /* ADClusterMapView.h */,
+				9F0AC85C1ACABF48008A9FD8 /* ADClusterMapView.m */,
+				9F0AC85D1ACABF48008A9FD8 /* ADMapCluster.h */,
+				9F0AC85E1ACABF48008A9FD8 /* ADMapCluster.m */,
+				9F0AC85F1ACABF48008A9FD8 /* ADMapPointAnnotation.h */,
+				9F0AC8601ACABF48008A9FD8 /* ADMapPointAnnotation.m */,
+			);
+			name = ADClusterMapView;
+			path = ../../ADClusterMapView;
+			sourceTree = "<group>";
+		};
+		9F7093B81AC2A92900165919 = {
+			isa = PBXGroup;
+			children = (
+				9F7093C31AC2A92900165919 /* MapTest */,
+				9F7093C21AC2A92900165919 /* Products */,
+				95F6994EB229A489E7A4D8B8 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		9F7093C21AC2A92900165919 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9F7093C11AC2A92900165919 /* MapTest.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9F7093C31AC2A92900165919 /* MapTest */ = {
+			isa = PBXGroup;
+			children = (
+				9F0AC8581ACABF48008A9FD8 /* ADClusterMapView */,
+				9F70943F1AC2C99400165919 /* Resources */,
+				9F70941A1AC2AB3800165919 /* Classes */,
+				9F7093EA1AC2AA2C00165919 /* Map */,
+				9F7093C81AC2A92900165919 /* AppDelegate.h */,
+				9F7093C91AC2A92900165919 /* AppDelegate.m */,
+				9F7093CB1AC2A92900165919 /* ViewController.h */,
+				9F7093CC1AC2A92900165919 /* ViewController.m */,
+				9F7093CE1AC2A92900165919 /* Main.storyboard */,
+				9F7093D11AC2A92900165919 /* Images.xcassets */,
+				9F7093D31AC2A92900165919 /* LaunchScreen.xib */,
+				9F7093C41AC2A92900165919 /* Supporting Files */,
+			);
+			path = MapTest;
+			sourceTree = "<group>";
+		};
+		9F7093C41AC2A92900165919 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				9F7093C51AC2A92900165919 /* Info.plist */,
+				9F7093C61AC2A92900165919 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9F7093EA1AC2AA2C00165919 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				9F7093EB1AC2AA2C00165919 /* Callouts */,
+				9F7093F51AC2AA2C00165919 /* HLMapVC.h */,
+				9F7093F61AC2AA2C00165919 /* HLMapVC.m */,
+				9F7093F71AC2AA2C00165919 /* HLMapVC.xib */,
+				9F7093F81AC2AA2C00165919 /* HLMapVC~iphone6+.xib */,
+				9F7093F91AC2AA2C00165919 /* MapViews */,
+				9F7094011AC2AA2C00165919 /* Markers */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
+		9F7093EB1AC2AA2C00165919 /* Callouts */ = {
+			isa = PBXGroup;
+			children = (
+				9F7093EC1AC2AA2C00165919 /* HLGroupCalloutCell.h */,
+				9F7093ED1AC2AA2C00165919 /* HLGroupCalloutCell.m */,
+				9F7093EE1AC2AA2C00165919 /* HLGroupCalloutCell.xib */,
+				9F7093EF1AC2AA2C00165919 /* HLGroupCalloutView.h */,
+				9F7093F01AC2AA2C00165919 /* HLGroupCalloutView.m */,
+				9F7093F11AC2AA2C00165919 /* HLGroupCalloutView.xib */,
+				9F7093F21AC2AA2C00165919 /* HLHotelCalloutView.h */,
+				9F7093F31AC2AA2C00165919 /* HLHotelCalloutView.m */,
+				9F7093F41AC2AA2C00165919 /* HLHotelCalloutView.xib */,
+			);
+			path = Callouts;
+			sourceTree = "<group>";
+		};
+		9F7093F91AC2AA2C00165919 /* MapViews */ = {
+			isa = PBXGroup;
+			children = (
+				9F7093FA1AC2AA2C00165919 /* HLHotelsMapView.h */,
+				9F7093FB1AC2AA2C00165919 /* HLHotelsMapView.m */,
+				9F7093FC1AC2AA2C00165919 /* HLMapView.h */,
+				9F7093FD1AC2AA2C00165919 /* HLMapView.m */,
+				9F7093FE1AC2AA2C00165919 /* HLMapViewDelegate.h */,
+				9F7093FF1AC2AA2C00165919 /* HLVariantsMapView.h */,
+				9F7094001AC2AA2C00165919 /* HLVariantsMapView.m */,
+			);
+			path = MapViews;
+			sourceTree = "<group>";
+		};
+		9F7094011AC2AA2C00165919 /* Markers */ = {
+			isa = PBXGroup;
+			children = (
+				9F7094021AC2AA2C00165919 /* HLAnnotationView.h */,
+				9F7094031AC2AA2C00165919 /* HLAnnotationView.m */,
+				9F7094041AC2AA2C00165919 /* HLGroupAnnotationView.h */,
+				9F7094051AC2AA2C00165919 /* HLGroupAnnotationView.m */,
+				9F7094061AC2AA2C00165919 /* HLMapAnnotation.h */,
+				9F7094071AC2AA2C00165919 /* HLMapAnnotation.m */,
+				9F7094081AC2AA2C00165919 /* HLSingleAnnotationView.h */,
+				9F7094091AC2AA2C00165919 /* HLSingleAnnotationView.m */,
+			);
+			path = Markers;
+			sourceTree = "<group>";
+		};
+		9F70941A1AC2AB3800165919 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				9FA2126D1AC446E700CCEDAF /* NSDictionary+StringForKey.h */,
+				9FA2126E1AC446E700CCEDAF /* NSDictionary+StringForKey.m */,
+				9FA212631AC4396B00CCEDAF /* HLVariantsManager.h */,
+				9FA212641AC4396B00CCEDAF /* HLVariantsManager.m */,
+				9FA212491AC438E600CCEDAF /* Loaders */,
+				9FA212541AC438E600CCEDAF /* RoomsLoaders */,
+				9F70943C1AC2B38E00165919 /* HLLocaleInspector.h */,
+				9F70943D1AC2B38E00165919 /* HLLocaleInspector.m */,
+				9F7094391AC2B18B00165919 /* DateUtil.h */,
+				9F70943A1AC2B18B00165919 /* DateUtil.m */,
+				9F7094361AC2B15B00165919 /* HLCurrency.h */,
+				9F7094371AC2B15B00165919 /* HLCurrency.m */,
+				9F7094331AC2ADD200165919 /* HLApiCoordinate.h */,
+				9F7094341AC2ADD200165919 /* HLApiCoordinate.m */,
+				9F7094301AC2ADCA00165919 /* HLCity.h */,
+				9F7094311AC2ADCA00165919 /* HLCity.m */,
+				9F70942D1AC2AD6B00165919 /* HLSearchInfo.h */,
+				9F70942E1AC2AD6B00165919 /* HLSearchInfo.m */,
+				9F70942A1AC2AD2C00165919 /* StringUtils.h */,
+				9F70942B1AC2AD2C00165919 /* StringUtils.m */,
+				9F7094271AC2ACA700165919 /* HLDistanceCalculator.h */,
+				9F7094281AC2ACA700165919 /* HLDistanceCalculator.m */,
+				9F7094241AC2AC6700165919 /* HLHotel.h */,
+				9F7094251AC2AC6700165919 /* HLHotel.m */,
+				9F70941E1AC2AB7B00165919 /* HLCommonVC.h */,
+				9F70941F1AC2AB7B00165919 /* HLCommonVC.m */,
+				9F7094201AC2AB7B00165919 /* HLRoom.h */,
+				9F7094211AC2AB7B00165919 /* HLRoom.m */,
+				9F70941B1AC2AB3800165919 /* HLResultVariant.h */,
+				9F70941C1AC2AB3800165919 /* HLResultVariant.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		9F70943F1AC2C99400165919 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				9FA212691AC4424E00CCEDAF /* rooms.json */,
+				9FA2126A1AC4424E00CCEDAF /* hotels.json */,
+				9F7094401AC2C9A100165919 /* pinImage.png */,
+				9F7094411AC2C9A100165919 /* pinImage@2x.png */,
+				9F7094421AC2C9A100165919 /* pinImageLeft.png */,
+				9F7094431AC2C9A100165919 /* pinImageLeft@2x.png */,
+				9F7094441AC2C9A100165919 /* pinImageRight.png */,
+				9F7094451AC2C9A100165919 /* pinImageRight@2x.png */,
+				9F70944C1AC2C9FF00165919 /* pinGroupImageLeft.png */,
+				9F70944D1AC2C9FF00165919 /* pinGroupImageLeft@2x.png */,
+				9F70944E1AC2C9FF00165919 /* pinGroupImageRight.png */,
+				9F70944F1AC2C9FF00165919 /* pinGroupImageRight@2x.png */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		9FA212491AC438E600CCEDAF /* Loaders */ = {
+			isa = PBXGroup;
+			children = (
+				9FA212521AC438E600CCEDAF /* HLHotelsContentLoader.h */,
+				9FA212531AC438E600CCEDAF /* HLHotelsContentLoader.m */,
+			);
+			path = Loaders;
+			sourceTree = "<group>";
+		};
+		9FA212541AC438E600CCEDAF /* RoomsLoaders */ = {
+			isa = PBXGroup;
+			children = (
+				9FA212661AC43CF700CCEDAF /* HLAbstractRoomsLoader.h */,
+				9FA212671AC43CF700CCEDAF /* HLAbstractRoomsLoader.m */,
+			);
+			path = RoomsLoaders;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		9F7093C01AC2A92900165919 /* MapTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9F7093E41AC2A92900165919 /* Build configuration list for PBXNativeTarget "MapTest" */;
+			buildPhases = (
+				9F7093BD1AC2A92900165919 /* Sources */,
+				9F7093BE1AC2A92900165919 /* Frameworks */,
+				9F7093BF1AC2A92900165919 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MapTest;
+			productName = MapTest;
+			productReference = 9F7093C11AC2A92900165919 /* MapTest.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9F7093B91AC2A92900165919 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0620;
+				ORGANIZATIONNAME = "Anton Chebotov";
+				TargetAttributes = {
+					9F7093C01AC2A92900165919 = {
+						CreatedOnToolsVersion = 6.2;
+					};
+				};
+			};
+			buildConfigurationList = 9F7093BC1AC2A92900165919 /* Build configuration list for PBXProject "MapTest" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 9F7093B81AC2A92900165919;
+			productRefGroup = 9F7093C21AC2A92900165919 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9F7093C01AC2A92900165919 /* MapTest */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9F7093BF1AC2A92900165919 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9F7094501AC2C9FF00165919 /* pinGroupImageLeft.png in Resources */,
+				9F7094461AC2C9A100165919 /* pinImage.png in Resources */,
+				9FA2126C1AC4424E00CCEDAF /* hotels.json in Resources */,
+				9F7094521AC2C9FF00165919 /* pinGroupImageRight.png in Resources */,
+				9F70944A1AC2C9A100165919 /* pinImageRight.png in Resources */,
+				9F7094491AC2C9A100165919 /* pinImageLeft@2x.png in Resources */,
+				9F70940B1AC2AA2C00165919 /* HLGroupCalloutCell.xib in Resources */,
+				9FA2126B1AC4424E00CCEDAF /* rooms.json in Resources */,
+				9F70940D1AC2AA2C00165919 /* HLGroupCalloutView.xib in Resources */,
+				9F7094121AC2AA2C00165919 /* HLMapVC~iphone6+.xib in Resources */,
+				9F7094511AC2C9FF00165919 /* pinGroupImageLeft@2x.png in Resources */,
+				9F7094111AC2AA2C00165919 /* HLMapVC.xib in Resources */,
+				9F7094481AC2C9A100165919 /* pinImageLeft.png in Resources */,
+				9F70940F1AC2AA2C00165919 /* HLHotelCalloutView.xib in Resources */,
+				9F7093D01AC2A92900165919 /* Main.storyboard in Resources */,
+				9F7093D51AC2A92900165919 /* LaunchScreen.xib in Resources */,
+				9F7094471AC2C9A100165919 /* pinImage@2x.png in Resources */,
+				9F7093D21AC2A92900165919 /* Images.xcassets in Resources */,
+				9F70944B1AC2C9A100165919 /* pinImageRight@2x.png in Resources */,
+				9F7094531AC2C9FF00165919 /* pinGroupImageRight@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9F7093BD1AC2A92900165919 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9FA2125F1AC438E600CCEDAF /* HLHotelsContentLoader.m in Sources */,
+				9F7094181AC2AA2C00165919 /* HLMapAnnotation.m in Sources */,
+				9F7094131AC2AA2C00165919 /* HLHotelsMapView.m in Sources */,
+				9F7094321AC2ADCA00165919 /* HLCity.m in Sources */,
+				9F70940A1AC2AA2C00165919 /* HLGroupCalloutCell.m in Sources */,
+				9F70942F1AC2AD6B00165919 /* HLSearchInfo.m in Sources */,
+				9F7093CD1AC2A92900165919 /* ViewController.m in Sources */,
+				9F70943B1AC2B18B00165919 /* DateUtil.m in Sources */,
+				9F70940E1AC2AA2C00165919 /* HLHotelCalloutView.m in Sources */,
+				9F70941D1AC2AB3800165919 /* HLResultVariant.m in Sources */,
+				9F0AC8611ACABF48008A9FD8 /* ADClusterAnnotation.m in Sources */,
+				9F0AC8641ACABF48008A9FD8 /* ADMapPointAnnotation.m in Sources */,
+				9F7094261AC2AC6700165919 /* HLHotel.m in Sources */,
+				9F7094291AC2ACA700165919 /* HLDistanceCalculator.m in Sources */,
+				9F0AC8621ACABF48008A9FD8 /* ADClusterMapView.m in Sources */,
+				9FA212681AC43CF700CCEDAF /* HLAbstractRoomsLoader.m in Sources */,
+				9F7094231AC2AB7B00165919 /* HLRoom.m in Sources */,
+				9F7094101AC2AA2C00165919 /* HLMapVC.m in Sources */,
+				9F7094151AC2AA2C00165919 /* HLVariantsMapView.m in Sources */,
+				9F7094161AC2AA2C00165919 /* HLAnnotationView.m in Sources */,
+				9F70940C1AC2AA2C00165919 /* HLGroupCalloutView.m in Sources */,
+				9F7093CA1AC2A92900165919 /* AppDelegate.m in Sources */,
+				9F7094171AC2AA2C00165919 /* HLGroupAnnotationView.m in Sources */,
+				9F7094191AC2AA2C00165919 /* HLSingleAnnotationView.m in Sources */,
+				9F70942C1AC2AD2C00165919 /* StringUtils.m in Sources */,
+				9F0AC8631ACABF48008A9FD8 /* ADMapCluster.m in Sources */,
+				9F7094221AC2AB7B00165919 /* HLCommonVC.m in Sources */,
+				9F7094141AC2AA2C00165919 /* HLMapView.m in Sources */,
+				9FA212651AC4396B00CCEDAF /* HLVariantsManager.m in Sources */,
+				9FA2126F1AC446E700CCEDAF /* NSDictionary+StringForKey.m in Sources */,
+				9F7093C71AC2A92900165919 /* main.m in Sources */,
+				9F7094381AC2B15B00165919 /* HLCurrency.m in Sources */,
+				9F7094351AC2ADD200165919 /* HLApiCoordinate.m in Sources */,
+				9F70943E1AC2B38E00165919 /* HLLocaleInspector.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		9F7093CE1AC2A92900165919 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9F7093CF1AC2A92900165919 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		9F7093D31AC2A92900165919 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9F7093D41AC2A92900165919 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		9F7093E21AC2A92900165919 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		9F7093E31AC2A92900165919 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		9F7093E51AC2A92900165919 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = MapTest/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		9F7093E61AC2A92900165919 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = MapTest/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9F7093BC1AC2A92900165919 /* Build configuration list for PBXProject "MapTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9F7093E21AC2A92900165919 /* Debug */,
+				9F7093E31AC2A92900165919 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9F7093E41AC2A92900165919 /* Build configuration list for PBXNativeTarget "MapTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9F7093E51AC2A92900165919 /* Debug */,
+				9F7093E61AC2A92900165919 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9F7093B91AC2A92900165919 /* Project object */;
+}

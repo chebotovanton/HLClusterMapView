@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14D72i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HLMapVC">
+            <connections>
+                <outlet property="groupCalloutBackground" destination="kpl-B3-Z9Z" id="PKY-OX-8ow"/>
+                <outlet property="groupCalloutConstraint" destination="i8O-Bz-ts7" id="Hn1-ek-nOW"/>
+                <outlet property="locateMeButton" destination="z1H-7u-7dl" id="3L1-4x-Tc4"/>
+                <outlet property="resultMapView" destination="Fsb-QZ-IW4" id="9bV-gA-4Jy"/>
+                <outlet property="view" destination="1" id="3"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="1">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fsb-QZ-IW4" customClass="HLVariantsMapView">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qv4-z1-ylh" userLabel="Google Button Obstacle">
+                    <rect key="frame" x="0.0" y="536" width="70" height="32"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="32" id="cpS-NN-Y8t"/>
+                        <constraint firstAttribute="width" constant="70" id="whr-oJ-lab"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z1H-7u-7dl" userLabel="Locate me Button">
+                    <rect key="frame" x="250" y="493" width="50" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="BlI-LH-efS"/>
+                        <constraint firstAttribute="width" constant="50" id="sze-lE-jiM"/>
+                    </constraints>
+                    <state key="normal" image="locateMeButton.png">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="selected" image="locateMeButtonSelected.png"/>
+                    <state key="highlighted" image="locateMeButtonHighlighted.png"/>
+                    <connections>
+                        <action selector="locateMeAction" destination="-1" eventType="touchUpInside" id="YwB-Gj-AHM"/>
+                    </connections>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kpl-B3-Z9Z" userLabel="Group Callout Background View">
+                    <rect key="frame" x="8" y="568" width="303" height="431"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="303" id="bAJ-Lm-X7o"/>
+                        <constraint firstAttribute="height" constant="431" id="jUA-nS-zzf"/>
+                    </constraints>
+                </view>
+                <view alpha="0.0" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bB5-nh-Mwd" userLabel="Activity View">
+                    <rect key="frame" x="80" y="202" width="160" height="166"/>
+                    <subviews>
+                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="HkC-6f-e6C">
+                            <rect key="frame" x="62" y="26" width="37" height="37"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="37" id="5nr-Xv-YL5"/>
+                                <constraint firstAttribute="width" constant="37" id="s52-2o-fe6"/>
+                            </constraints>
+                        </activityIndicatorView>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Подождите, идет поиск ближайших к вам отелей." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="140" translatesAutoresizingMaskIntoConstraints="NO" id="Asp-td-tLU">
+                            <rect key="frame" x="10" y="85" width="140" height="61"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.40000000000000002" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="Asp-td-tLU" firstAttribute="leading" secondItem="bB5-nh-Mwd" secondAttribute="leading" constant="10" id="Lke-fH-dE3"/>
+                        <constraint firstAttribute="bottom" secondItem="Asp-td-tLU" secondAttribute="bottom" constant="20" id="TTx-sS-ak4"/>
+                        <constraint firstItem="HkC-6f-e6C" firstAttribute="top" secondItem="bB5-nh-Mwd" secondAttribute="top" constant="26" id="ZPK-kv-XRI"/>
+                        <constraint firstAttribute="trailing" secondItem="Asp-td-tLU" secondAttribute="trailing" constant="10" id="ciU-wT-YQ0"/>
+                        <constraint firstItem="Asp-td-tLU" firstAttribute="top" secondItem="HkC-6f-e6C" secondAttribute="bottom" constant="22" id="mKy-qZ-xSU"/>
+                        <constraint firstAttribute="width" constant="160" id="orm-xN-1G6"/>
+                        <constraint firstAttribute="centerX" secondItem="HkC-6f-e6C" secondAttribute="centerX" constant="-0.5" id="q0Y-GR-D96"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="Fsb-QZ-IW4" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="1aB-50-fh2"/>
+                <constraint firstItem="Fsb-QZ-IW4" firstAttribute="top" secondItem="1" secondAttribute="top" id="7Za-SP-XpJ"/>
+                <constraint firstAttribute="centerX" secondItem="kpl-B3-Z9Z" secondAttribute="centerX" constant="0.5" id="OHp-Dw-yW8"/>
+                <constraint firstAttribute="trailing" secondItem="Fsb-QZ-IW4" secondAttribute="trailing" id="Pkm-VS-qbe"/>
+                <constraint firstAttribute="bottom" secondItem="z1H-7u-7dl" secondAttribute="bottom" constant="25" id="QZR-jA-ICj"/>
+                <constraint firstAttribute="bottom" secondItem="Fsb-QZ-IW4" secondAttribute="bottom" id="Qge-8f-Ixm"/>
+                <constraint firstAttribute="bottom" secondItem="Qv4-z1-ylh" secondAttribute="bottom" id="gcs-RM-zdh"/>
+                <constraint firstItem="kpl-B3-Z9Z" firstAttribute="top" secondItem="Fsb-QZ-IW4" secondAttribute="bottom" id="i8O-Bz-ts7"/>
+                <constraint firstAttribute="centerX" secondItem="bB5-nh-Mwd" secondAttribute="centerX" id="nFy-BW-7mx"/>
+                <constraint firstItem="Qv4-z1-ylh" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="t0x-Ms-JhQ"/>
+                <constraint firstAttribute="trailing" secondItem="z1H-7u-7dl" secondAttribute="trailing" constant="20" id="xp1-0q-mHc"/>
+                <constraint firstAttribute="centerY" secondItem="bB5-nh-Mwd" secondAttribute="centerY" id="xsa-Ao-qBQ"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="locateMeButton.png" width="43" height="43"/>
+        <image name="locateMeButtonHighlighted.png" width="43" height="43"/>
+        <image name="locateMeButtonSelected.png" width="43" height="43"/>
+    </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>

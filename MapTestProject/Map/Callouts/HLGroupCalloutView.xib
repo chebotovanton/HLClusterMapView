@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C68m" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="1" customClass="HLGroupCalloutView">
+            <rect key="frame" x="0.0" y="0.0" width="303" height="431"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="127" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="x57-EU-281">
+                    <rect key="frame" x="0.0" y="0.0" width="303" height="384"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <connections>
+                        <outlet property="dataSource" destination="1" id="jEL-Cy-2kW"/>
+                        <outlet property="delegate" destination="1" id="e3C-zB-ppZ"/>
+                    </connections>
+                </tableView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4lh-nC-Am8">
+                    <rect key="frame" x="0.0" y="384" width="303" height="40"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="6x8-vm-BoK"/>
+                    </constraints>
+                    <state key="normal" title="Button">
+                        <color key="titleColor" red="0.47058823529999999" green="0.72549019609999998" blue="0.20784313730000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <state key="highlighted" backgroundImage="hotelCalloutSelectedBackground.png"/>
+                    <connections>
+                        <action selector="cancel" destination="1" eventType="touchUpInside" id="X90-ur-sWw"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="x57-EU-281" firstAttribute="top" secondItem="1" secondAttribute="top" id="FTy-4d-T8a"/>
+                <constraint firstItem="x57-EU-281" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="KaU-Jg-edt"/>
+                <constraint firstItem="4lh-nC-Am8" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="QUW-qF-CeJ"/>
+                <constraint firstAttribute="bottom" secondItem="4lh-nC-Am8" secondAttribute="bottom" constant="7" id="gW7-EU-3Yc"/>
+                <constraint firstItem="4lh-nC-Am8" firstAttribute="top" secondItem="x57-EU-281" secondAttribute="bottom" id="heP-GU-Jr2"/>
+                <constraint firstAttribute="trailing" secondItem="x57-EU-281" secondAttribute="trailing" id="jxK-1S-oaH"/>
+                <constraint firstAttribute="trailing" secondItem="4lh-nC-Am8" secondAttribute="trailing" id="pdj-ax-h1G"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="cancelButton" destination="4lh-nC-Am8" id="Vb1-jl-XNv"/>
+                <outlet property="tableView" destination="x57-EU-281" id="NNz-UX-b0E"/>
+            </connections>
+        </view>
+    </objects>
+    <resources>
+        <image name="hotelCalloutSelectedBackground.png" width="320" height="167"/>
+    </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>
