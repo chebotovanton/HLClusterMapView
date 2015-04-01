@@ -286,6 +286,8 @@
 //    [self animationDidStop];
 //    return;
 
+#warning damn slow!
+    
     // Build an array with available annotations (eg. not moving or not staying at the same place on the map)
     NSMutableArray * availableSingleAnnotations = [[NSMutableArray alloc] init];
     NSMutableArray * availableClusterAnnotations = [[NSMutableArray alloc] init];

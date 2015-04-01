@@ -37,7 +37,7 @@ static NSInteger mapPointCalculations;
 - (id)initWithAnnotations:(NSArray *)annotations atDepth:(NSInteger)depth inMapRect:(MKMapRect)mapRect gamma:(double)gamma clusterTitle:(NSString *)clusterTitle showSubtitle:(BOOL)showSubtitle {
     self = [super init];
     if (self) {
-        self.annotationCollapseSize = CGSizeMake(10.0, 30.0);
+        self.annotationCollapseSize = CGSizeMake(10.0, 40.0);
         
         _depth = depth;
         _mapRect = mapRect;
@@ -265,9 +265,7 @@ static NSInteger mapPointCalculations;
            mapSpan:(MKCoordinateSpan)mapSpan
        mapViewSize:(CGSize)mapViewSize
 {
-#warning no need to calculate map points. Use locations. 
-#warning Calculate lat and lon delta to get if clusters are too close
-#warning damn slow!
+#warning a-damn lot of this!
     
     heavyOperationsCount++;
     
@@ -338,6 +336,22 @@ static NSInteger mapPointCalculations;
 		}
 	}
 	return YES;
+    
+//    for(NSInteger i = newLevelClusters.count - 1; i >= 0; i--){
+//        ADMapCluster * oldCluster = newLevelClusters[i];
+//        if([self isCluster:cluster tooCloseTo:oldCluster mapSpan:mapSpan mapViewSize:mapViewSize]){
+//            return NO;
+//        }
+//    }
+//    
+//    for(NSInteger i = clusters.count - 1; i >= 0; i--){
+//        ADMapCluster * oldCluster = clusters[i];
+//        if([self isCluster:cluster tooCloseTo:oldCluster mapSpan:mapSpan mapViewSize:mapViewSize]){
+//            return NO;
+//        }
+//    }
+//    return YES;
+
 }
 
 - (BOOL) canSplitChild:(ADMapCluster *)childOne
