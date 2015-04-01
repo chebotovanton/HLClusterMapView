@@ -268,21 +268,23 @@
 @implementation ADClusterMapView (Private)
 - (void)_clusterInMapRect:(MKMapRect)rect
 {
-    NSArray * clustersToShowOnMap = [_rootMapCluster findChildrenInMapRect:rect mapViewSize:self.frame.size];
+    NSArray * clustersToShowOnMap = [_rootMapCluster findChildrenInMapSpan:self.region.span mapViewSize:self.frame.size];
+    NSDate * date = [NSDate date];
     
-    for (ADClusterAnnotation * annotation in [_singleAnnotationsPool arrayByAddingObjectsFromArray:_clusterAnnotationsPool]) {
-        [annotation reset];
-    }
-    
-    for (int i = 0; i < clustersToShowOnMap.count; i++){
-        ADMapCluster * cluster = clustersToShowOnMap[i];
-        ADClusterAnnotation * annotation = _singleAnnotationsPool[i];
-        annotation.cluster = cluster;
-        annotation.coordinate = [cluster anyCoordinate];
-    }
-    
-    [self animationDidStop];
-    return;
+//#warning debug
+//    for (ADClusterAnnotation * annotation in [_singleAnnotationsPool arrayByAddingObjectsFromArray:_clusterAnnotationsPool]) {
+//        [annotation reset];
+//    }
+//    
+//    for (int i = 0; i < clustersToShowOnMap.count; i++){
+//        ADMapCluster * cluster = clustersToShowOnMap[i];
+//        ADClusterAnnotation * annotation = _singleAnnotationsPool[i];
+//        annotation.cluster = cluster;
+//        annotation.coordinate = [cluster anyCoordinate];
+//    }
+//    
+//    [self animationDidStop];
+//    return;
 
     // Build an array with available annotations (eg. not moving or not staying at the same place on the map)
     NSMutableArray * availableSingleAnnotations = [[NSMutableArray alloc] init];
@@ -392,7 +394,7 @@
         }
     }
 #warning debug
-	NSLog(@"Group animation started");
+//	NSLog(@"Group animation started");
 	[UIView animateWithDuration:0.3
 						  delay:0.0
 						options:UIViewAnimationOptionBeginFromCurrentState |
@@ -406,7 +408,7 @@
 						 }
 					 }
 					 completion:^(BOOL finished) {
-						 NSLog(@"Group animation finished: %d", finished);
+//						 NSLog(@"Group animation finished: %d", finished);
 						[self animationDidStop];
 					 }];
 
@@ -441,6 +443,9 @@
         NSAssert(annotation.type == ADClusterAnnotationTypeCluster, @"Inconsistent annotation type!");
         [annotation reset];
     }
+    
+    NSTimeInterval interval = [[NSDate date] timeIntervalSinceDate:date];
+    NSLog(@"presentation time:%f", interval);
 }
 
 - (NSInteger)_numberOfClusters

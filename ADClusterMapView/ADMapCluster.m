@@ -12,6 +12,7 @@
 #define ADMapClusterDiscriminationPrecision 1E-4
 
 static NSInteger heavyOperationsCount;
+static NSInteger mapPointCalculations;
 
 @interface ADMapCluster ()
 {
@@ -36,7 +37,7 @@ static NSInteger heavyOperationsCount;
 - (id)initWithAnnotations:(NSArray *)annotations atDepth:(NSInteger)depth inMapRect:(MKMapRect)mapRect gamma:(double)gamma clusterTitle:(NSString *)clusterTitle showSubtitle:(BOOL)showSubtitle {
     self = [super init];
     if (self) {
-        self.annotationCollapseSize = CGSizeMake(0.1, 0.1);
+        self.annotationCollapseSize = CGSizeMake(10.0, 30.0);
         
         _depth = depth;
         _mapRect = mapRect;
@@ -255,29 +256,33 @@ static NSInteger heavyOperationsCount;
 - (MKMapPoint) getMapPoint
 {
 	CLLocationCoordinate2D coord = [self anyCoordinate];
+    mapPointCalculations ++;
 	return MKMapPointForCoordinate(coord);
 }
 
-- (BOOL) isCluster:(ADMapCluster *)clusterOne tooCloseTo:(ADMapCluster *)clusterTwo mapRect:(MKMapRect)mapRect mapViewSize:(CGSize)mapViewSize
+- (BOOL) isCluster:(ADMapCluster *)clusterOne
+        tooCloseTo:(ADMapCluster *)clusterTwo
+           mapSpan:(MKCoordinateSpan)mapSpan
+       mapViewSize:(CGSize)mapViewSize
 {
-    heavyOperationsCount++;
+#warning no need to calculate map points. Use locations. 
+#warning Calculate lat and lon delta to get if clusters are too close
 #warning damn slow!
-	MKMapPoint pointOne = [clusterOne getMapPoint];
-	MKMapPoint pointTwo = [clusterTwo getMapPoint];
-	
-    int length = clusterOne.title.length + clusterTwo.title.length;
     
-	CGFloat diff = pointOne.x - pointTwo.x;
-	diff = fabs(diff);
-    CGFloat delta = (diff/mapRect.size.width);// * mapViewSize.width;
+    heavyOperationsCount++;
+    
+	CLLocationCoordinate2D pointOne = [clusterOne anyCoordinate];
+	CLLocationCoordinate2D pointTwo = [clusterTwo anyCoordinate];
+	
+    
+    CGFloat delta = fabsf(mapViewSize.width * (pointOne.latitude - pointTwo.latitude) /
+                          mapSpan.latitudeDelta);
 
 	if(delta > self.annotationCollapseSize.width){
 		return NO;
 	}
 	
-	diff = pointOne.y - pointTwo.y;
-	diff = fabs(diff);
-    delta = (diff/mapRect.size.height);// * mapViewSize.height;
+	delta =  fabsf( mapViewSize.height * (pointOne.longitude - pointTwo.longitude) / mapSpan.longitudeDelta );
 	if(delta > self.annotationCollapseSize.height){
 		return NO;
 	}
@@ -287,17 +292,48 @@ static NSInteger heavyOperationsCount;
 - (BOOL) hasPlaceForCluster:(ADMapCluster *)cluster
                 allClusters:(NSArray *)clusters
            newLevelClusters:(NSArray *)newLevelClusters
-                    mapRect:(MKMapRect)mapRect
+                    mapSpan:(MKCoordinateSpan)mapSpan
                 mapViewSize:(CGSize)mapViewSize
 {
 #warning compare with nearby clusters only!
+    
+//    CGFloat minLatDelta = CGFLOAT_MAX;
+//    CGFloat minLonDelta = CGFLOAT_MAX;
+//    
+//    ADMapCluster * closestCluster = nil;
+//    
+//    for(ADMapCluster * oldCluster in clusters){
+//        if(oldCluster == self){
+//            continue;
+//        }
+//        CGFloat latDelta = fabsf(oldCluster.anyCoordinate.latitude - cluster.anyCoordinate.latitude);
+//        if(latDelta < minLatDelta) {
+//            minLatDelta = latDelta;
+//            closestLatCluster = cluster;
+//        }
+//        
+//        CGFloat lonDelta = fabsf(oldCluster.anyCoordinate.longitude - cluster.anyCoordinate.longitude);
+//        if(lonDelta < minLonDelta) {
+//            minLonDelta = lonDelta;
+//            closestLonCluster = cluster;
+//        }
+//    }
+//    if([self isCluster:cluster tooCloseTo:closestLatCluster mapRect:mapRect mapViewSize:mapViewSize]){
+//        return NO;
+//    }
+//    if([self isCluster:cluster tooCloseTo:closestLonCluster mapRect:mapRect mapViewSize:mapViewSize]){
+//        return NO;
+//    }
+//    return YES;
+
+    
 	for(ADMapCluster * oldCluster in clusters){
-		if([self isCluster:cluster tooCloseTo:oldCluster mapRect:mapRect mapViewSize:mapViewSize]){
+		if([self isCluster:cluster tooCloseTo:oldCluster mapSpan:mapSpan mapViewSize:mapViewSize]){
 			return NO;
 		}
 	}
 	for(ADMapCluster * oldCluster in newLevelClusters){
-		if([self isCluster:cluster tooCloseTo:oldCluster mapRect:mapRect mapViewSize:mapViewSize]){
+		if([self isCluster:cluster tooCloseTo:oldCluster mapSpan:mapSpan mapViewSize:mapViewSize]){
 			return NO;
 		}
 	}
@@ -308,16 +344,17 @@ static NSInteger heavyOperationsCount;
               childTwo:(ADMapCluster *)childTwo
            allClusters:(NSArray *)allClusters
            newClusters:(NSArray *)newClusters
-               mapRect:(MKMapRect)mapRect mapViewSize:(CGSize)mapViewSize
+               mapSpan:(MKCoordinateSpan)mapSpan
+           mapViewSize:(CGSize)mapViewSize
 {
 #warning seems to work just as planned
-    if([self isCluster:childOne tooCloseTo:childTwo mapRect:mapRect mapViewSize:mapViewSize]){
+    if([self isCluster:childOne tooCloseTo:childTwo mapSpan:mapSpan mapViewSize:mapViewSize]){
         return NO;
     }
 
     BOOL canSplit = YES;
     for(ADMapCluster * child in @[childOne, childTwo]){
-        BOOL hasPlace = [self hasPlaceForCluster:child allClusters:allClusters newLevelClusters:newClusters mapRect:mapRect mapViewSize:mapViewSize];
+        BOOL hasPlace = [self hasPlaceForCluster:child allClusters:allClusters newLevelClusters:newClusters mapSpan:mapSpan mapViewSize:mapViewSize];
         if(!hasPlace) {
             canSplit = NO;
             break;
@@ -328,13 +365,13 @@ static NSInteger heavyOperationsCount;
 
 - (NSArray *) findAnyVisibleDescendantsWithAllClusters:(NSMutableArray *)allClusters
                                           newLevelClusters:(NSArray *)newLevelClusters
-                                                   mapRect:(MKMapRect)mapRect
+                                                   mapSpan:(MKCoordinateSpan)mapSpan
                                                mapViewSize:(CGSize)mapViewSize
 {
 #warning seems to work just as planned
     NSMutableArray * result = [NSMutableArray new];
     for(ADMapCluster * child in self.children){
-       if([self hasPlaceForCluster:child allClusters:allClusters newLevelClusters:newLevelClusters mapRect:mapRect mapViewSize:mapViewSize]){
+       if([self hasPlaceForCluster:child allClusters:allClusters newLevelClusters:newLevelClusters mapSpan:mapSpan mapViewSize:mapViewSize]){
            [result addObject:child];
        }
     }
@@ -342,16 +379,21 @@ static NSInteger heavyOperationsCount;
         return result;
     }
     for(ADMapCluster * child in self.children){
-        NSArray * visible = [child findAnyVisibleDescendantsWithAllClusters:allClusters newLevelClusters:newLevelClusters mapRect:mapRect mapViewSize:mapViewSize];
+        NSArray * visible = [child findAnyVisibleDescendantsWithAllClusters:allClusters newLevelClusters:newLevelClusters mapSpan:mapSpan mapViewSize:mapViewSize];
         [result addObjectsFromArray:visible];
     }
     return result;
 }
 
-- (NSArray *)findChildrenInMapRect:(MKMapRect)mapRect mapViewSize:(CGSize)mapViewSize
+- (NSArray *)findChildrenInMapSpan:(MKCoordinateSpan)mapSpan
+                       mapViewSize:(CGSize)mapViewSize
 {
+    NSDate * date = [NSDate date];
 #warning seems to work just as planned
     heavyOperationsCount = 0;
+    mapPointCalculations = 0;
+    
+    [self recalculateMapPoint];
     
 	NSMutableArray * clusters = [NSMutableArray arrayWithObject:self];
 	
@@ -370,14 +412,14 @@ static NSInteger heavyOperationsCount;
                 continue;
             }
 			[clusters removeObject:cluster];
-            BOOL canSplit = [cluster canSplitChild:_leftChild childTwo:_rightChild allClusters:clusters newClusters:newLevelClusters mapRect:mapRect mapViewSize:mapViewSize];
+            BOOL canSplit = [cluster canSplitChild:_leftChild childTwo:_rightChild allClusters:clusters newClusters:newLevelClusters mapSpan:mapSpan mapViewSize:mapViewSize];
 			[clusters addObject:cluster];
 			if(canSplit){
 				[newLevelClusters addObjectsFromArray:children];
 				[clustersToRemove addObject:cluster];
 			}
             else {
-                NSArray * visibleDescendants = [cluster findAnyVisibleDescendantsWithAllClusters:clusters newLevelClusters:newLevelClusters mapRect:mapRect mapViewSize:mapViewSize];
+                NSArray * visibleDescendants = [cluster findAnyVisibleDescendantsWithAllClusters:clusters newLevelClusters:newLevelClusters mapSpan:mapSpan mapViewSize:mapViewSize];
                 [newLevelClusters addObjectsFromArray:visibleDescendants];
             }
 		}
@@ -389,7 +431,9 @@ static NSInteger heavyOperationsCount;
 		clustersToSplit = newLevelClusters;
 	}
 #warning heavy operations
-    NSLog(@"heavy operations count: %li", heavyOperationsCount);
+    NSTimeInterval interval = [[NSDate date] timeIntervalSinceDate:date];
+    NSLog(@"heavy operations count: %li, map calculations:%li, clusters: %li, clustering time: %f", heavyOperationsCount, mapPointCalculations, clusters.count, interval);
+    
 	return clusters;
 }
 
@@ -482,6 +526,13 @@ static NSInteger heavyOperationsCount;
         return self.annotation.annotation.subtitle;
     }
     return nil;
+}
+
+- (void) recalculateMapPoint
+{
+    self.mapPoint = [self getMapPoint];
+    [_leftChild recalculateMapPoint];
+    [_rightChild recalculateMapPoint];
 }
 
 - (NSInteger)numberOfChildren {

@@ -24,10 +24,12 @@
 #warning azaza
 @property (nonatomic, assign) ADMapCluster * ancestor;
 
+@property MKMapPoint mapPoint;
+
 
 - (id)initWithAnnotations:(NSArray *)annotations atDepth:(NSInteger)depth inMapRect:(MKMapRect)mapRect gamma:(double)gamma clusterTitle:(NSString *)clusterTitle showSubtitle:(BOOL)showSubtitle;
 + (ADMapCluster *)rootClusterForAnnotations:(NSArray *)annotations gamma:(double)gamma clusterTitle:(NSString *)clusterTitle showSubtitle:(BOOL)showSubtitle;
-- (NSArray *)findChildrenInMapRect:(MKMapRect)mapRect mapViewSize:(CGSize)mapViewSize;
+- (NSArray *)findChildrenInMapSpan:(MKCoordinateSpan)mapRect mapViewSize:(CGSize)mapViewSize;
 - (NSArray *)find:(NSInteger)N childrenInMapRect:(MKMapRect)mapRect;
 - (NSArray *)children;
 - (BOOL)isAncestorOf:(ADMapCluster *)mapCluster;
