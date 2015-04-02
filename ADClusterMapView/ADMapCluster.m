@@ -37,6 +37,7 @@ static NSInteger mapPointCalculations;
 - (id)initWithAnnotations:(NSArray *)annotations atDepth:(NSInteger)depth inMapRect:(MKMapRect)mapRect gamma:(double)gamma clusterTitle:(NSString *)clusterTitle showSubtitle:(BOOL)showSubtitle {
     self = [super init];
     if (self) {
+#warning bounds!
         self.annotationCollapseSize = CGSizeMake(10.0, 40.0);
         
         _depth = depth;
@@ -324,13 +325,13 @@ static NSInteger mapPointCalculations;
 //    }
 //    return YES;
 
+    for(ADMapCluster * oldCluster in newLevelClusters){
+        if([self isCluster:cluster tooCloseTo:oldCluster mapSpan:mapSpan mapViewSize:mapViewSize]){
+            return NO;
+        }
+    }
     
 	for(ADMapCluster * oldCluster in clusters){
-		if([self isCluster:cluster tooCloseTo:oldCluster mapSpan:mapSpan mapViewSize:mapViewSize]){
-			return NO;
-		}
-	}
-	for(ADMapCluster * oldCluster in newLevelClusters){
 		if([self isCluster:cluster tooCloseTo:oldCluster mapSpan:mapSpan mapViewSize:mapViewSize]){
 			return NO;
 		}

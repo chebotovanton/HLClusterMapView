@@ -44,7 +44,8 @@
         _originalAnnotations = annotations;
         _isSettingAnnotations = YES;
         [self removeAnnotations:_clusterAnnotations];
-        NSInteger numberOfAnnotationsInPool = 2 * [self _numberOfClusters]; // We manage a pool of annotations. In case we have N splits and N joins in a single animation we have to double up the actual number of annotations that belongs to the pool.
+#warning annotations count!
+        NSInteger numberOfAnnotationsInPool = annotations.count; //2 * [self _numberOfClusters]; // We manage a pool of annotations. In case we have N splits and N joins in a single animation we have to double up the actual number of annotations that belongs to the pool.
         _singleAnnotationsPool = [[NSMutableArray alloc] initWithCapacity: numberOfAnnotationsInPool];
         _clusterAnnotationsPool = [[NSMutableArray alloc] initWithCapacity: numberOfAnnotationsInPool];
         for (int i = 0; i < numberOfAnnotationsInPool; i++) {
@@ -271,20 +272,28 @@
     NSArray * clustersToShowOnMap = [_rootMapCluster findChildrenInMapSpan:self.region.span mapViewSize:self.frame.size];
     NSDate * date = [NSDate date];
     
-//#warning debug
-//    for (ADClusterAnnotation * annotation in [_singleAnnotationsPool arrayByAddingObjectsFromArray:_clusterAnnotationsPool]) {
-//        [annotation reset];
-//    }
-//    
-//    for (int i = 0; i < clustersToShowOnMap.count; i++){
-//        ADMapCluster * cluster = clustersToShowOnMap[i];
-//        ADClusterAnnotation * annotation = _singleAnnotationsPool[i];
-//        annotation.cluster = cluster;
-//        annotation.coordinate = [cluster anyCoordinate];
-//    }
-//    
-//    [self animationDidStop];
-//    return;
+#warning debug
+    for (ADClusterAnnotation * annotation in [_singleAnnotationsPool arrayByAddingObjectsFromArray:_clusterAnnotationsPool]) {
+        [annotation reset];
+    }
+    
+    for (int i = 0; i < clustersToShowOnMap.count; i++){
+        ADMapCluster * cluster = clustersToShowOnMap[i];
+        
+        
+        ADClusterAnnotation * annotation = nil;
+        
+        if(cluster.annotation){
+            annotation = _singleAnnotationsPool[i];
+        } else {
+            annotation = _clusterAnnotationsPool[i];
+        }
+        annotation.cluster = cluster;
+        annotation.coordinate = [cluster anyCoordinate];
+    }
+    
+    [self animationDidStop];
+    return;
 
 #warning damn slow!
     
