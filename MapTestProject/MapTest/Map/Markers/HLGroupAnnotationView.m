@@ -47,8 +47,8 @@
     if(clusterAnnotation.cluster == nil) {
         return;
     }
-    NSArray * originalAnnotations = [clusterAnnotation originalAnnotations];
-    
+    NSArray * originalAnnotations = clusterAnnotation.cluster.visibleOriginalAnnotations;
+
     for(HLMapAnnotation * mapAnnotation in originalAnnotations) {
         HLResultVariant * variant = mapAnnotation.variant;
         if(variant.minimalPrice < bestPrice){
@@ -63,6 +63,8 @@
     if(bestVariant.rooms.count > 0){
         priceString = [NSString stringWithFormat:@"%@ +", priceString];
     }
+#warning azazaz    
+    priceString = [NSString stringWithFormat:@"%li", originalAnnotations.count];
     [self setupWithColors:colors priceString:priceString];
 }
 

@@ -36,6 +36,7 @@
 	}
 	HLResultVariant * variant = mapAnnotation.variant;
 	
+#warning azzaaz
 	NSString * priceString = [StringUtils priceStringWithVariant:variant];
     NSMutableArray * colors = [NSMutableArray new];
     for(HLPopularHotelBadge * badge in variant.badges){

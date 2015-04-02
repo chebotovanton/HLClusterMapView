@@ -20,6 +20,7 @@
 @property (nonatomic, assign) BOOL showSubtitle;
 
 @property (nonatomic, assign) CGSize annotationCollapseSize;
+@property (nonatomic, readonly) NSArray * visibleOriginalAnnotations;
 
 #warning azaza
 @property (nonatomic, assign) ADMapCluster * ancestor;
@@ -29,7 +30,7 @@
 
 - (id)initWithAnnotations:(NSArray *)annotations atDepth:(NSInteger)depth inMapRect:(MKMapRect)mapRect gamma:(double)gamma clusterTitle:(NSString *)clusterTitle showSubtitle:(BOOL)showSubtitle;
 + (ADMapCluster *)rootClusterForAnnotations:(NSArray *)annotations gamma:(double)gamma clusterTitle:(NSString *)clusterTitle showSubtitle:(BOOL)showSubtitle;
-- (NSArray *)findChildrenInMapSpan:(MKCoordinateSpan)mapRect mapViewSize:(CGSize)mapViewSize;
+- (NSMutableArray *)findChildrenInMapSpan:(MKCoordinateSpan)mapRect mapViewSize:(CGSize)mapViewSize;
 - (NSArray *)find:(NSInteger)N childrenInMapRect:(MKMapRect)mapRect;
 - (NSArray *)children;
 - (BOOL)isAncestorOf:(ADMapCluster *)mapCluster;
@@ -37,4 +38,5 @@
 - (NSInteger)numberOfChildren;
 - (NSArray *)namesOfChildren;
 - (CLLocationCoordinate2D) anyCoordinate;
+- (void) updateVisibleOriginalAnnotationsWithVisibleGroups:(NSArray *)otherVisible;
 @end

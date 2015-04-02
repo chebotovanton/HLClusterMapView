@@ -269,8 +269,20 @@
 @implementation ADClusterMapView (Private)
 - (void)_clusterInMapRect:(MKMapRect)rect
 {
-    NSArray * clustersToShowOnMap = [_rootMapCluster findChildrenInMapSpan:self.region.span mapViewSize:self.frame.size];
     NSDate * date = [NSDate date];
+    
+    NSMutableArray * clustersToShowOnMap = [_rootMapCluster findChildrenInMapSpan:self.region.span mapViewSize:self.frame.size];
+    NSMutableArray * emptyClusters = [NSMutableArray new];
+    int totalHotels = 0;
+    for(ADMapCluster * cluster in clustersToShowOnMap){
+        [cluster updateVisibleOriginalAnnotationsWithVisibleGroups:clustersToShowOnMap];
+        totalHotels += cluster.visibleOriginalAnnotations.count;
+        if(cluster.visibleOriginalAnnotations.count == 0){
+            [emptyClusters addObject:cluster];
+        }
+    }
+    [clustersToShowOnMap removeObjectsInArray:emptyClusters];
+    NSLog(@"total hotels count: %i", totalHotels);
     
 #warning debug
     for (ADClusterAnnotation * annotation in [_singleAnnotationsPool arrayByAddingObjectsFromArray:_clusterAnnotationsPool]) {
@@ -405,7 +417,6 @@
         }
     }
 #warning debug
-//	NSLog(@"Group animation started");
 	[UIView animateWithDuration:0.3
 						  delay:0.0
 						options:UIViewAnimationOptionBeginFromCurrentState |
@@ -419,7 +430,6 @@
 						 }
 					 }
 					 completion:^(BOOL finished) {
-//						 NSLog(@"Group animation finished: %d", finished);
 						[self animationDidStop];
 					 }];
 

@@ -38,7 +38,7 @@ static NSInteger mapPointCalculations;
     self = [super init];
     if (self) {
 #warning bounds!
-        self.annotationCollapseSize = CGSizeMake(10.0, 40.0);
+        self.annotationCollapseSize = CGSizeMake(22.0, 70.0);
         
         _depth = depth;
         _mapRect = mapRect;
@@ -294,37 +294,6 @@ static NSInteger mapPointCalculations;
                     mapSpan:(MKCoordinateSpan)mapSpan
                 mapViewSize:(CGSize)mapViewSize
 {
-#warning compare with nearby clusters only!
-    
-//    CGFloat minLatDelta = CGFLOAT_MAX;
-//    CGFloat minLonDelta = CGFLOAT_MAX;
-//    
-//    ADMapCluster * closestCluster = nil;
-//    
-//    for(ADMapCluster * oldCluster in clusters){
-//        if(oldCluster == self){
-//            continue;
-//        }
-//        CGFloat latDelta = fabsf(oldCluster.anyCoordinate.latitude - cluster.anyCoordinate.latitude);
-//        if(latDelta < minLatDelta) {
-//            minLatDelta = latDelta;
-//            closestLatCluster = cluster;
-//        }
-//        
-//        CGFloat lonDelta = fabsf(oldCluster.anyCoordinate.longitude - cluster.anyCoordinate.longitude);
-//        if(lonDelta < minLonDelta) {
-//            minLonDelta = lonDelta;
-//            closestLonCluster = cluster;
-//        }
-//    }
-//    if([self isCluster:cluster tooCloseTo:closestLatCluster mapRect:mapRect mapViewSize:mapViewSize]){
-//        return NO;
-//    }
-//    if([self isCluster:cluster tooCloseTo:closestLonCluster mapRect:mapRect mapViewSize:mapViewSize]){
-//        return NO;
-//    }
-//    return YES;
-
     for(ADMapCluster * oldCluster in newLevelClusters){
         if([self isCluster:cluster tooCloseTo:oldCluster mapSpan:mapSpan mapViewSize:mapViewSize]){
             return NO;
@@ -337,22 +306,6 @@ static NSInteger mapPointCalculations;
 		}
 	}
 	return YES;
-    
-//    for(NSInteger i = newLevelClusters.count - 1; i >= 0; i--){
-//        ADMapCluster * oldCluster = newLevelClusters[i];
-//        if([self isCluster:cluster tooCloseTo:oldCluster mapSpan:mapSpan mapViewSize:mapViewSize]){
-//            return NO;
-//        }
-//    }
-//    
-//    for(NSInteger i = clusters.count - 1; i >= 0; i--){
-//        ADMapCluster * oldCluster = clusters[i];
-//        if([self isCluster:cluster tooCloseTo:oldCluster mapSpan:mapSpan mapViewSize:mapViewSize]){
-//            return NO;
-//        }
-//    }
-//    return YES;
-
 }
 
 - (BOOL) canSplitChild:(ADMapCluster *)childOne
@@ -362,7 +315,6 @@ static NSInteger mapPointCalculations;
                mapSpan:(MKCoordinateSpan)mapSpan
            mapViewSize:(CGSize)mapViewSize
 {
-#warning seems to work just as planned
     if([self isCluster:childOne tooCloseTo:childTwo mapSpan:mapSpan mapViewSize:mapViewSize]){
         return NO;
     }
@@ -383,7 +335,6 @@ static NSInteger mapPointCalculations;
                                                    mapSpan:(MKCoordinateSpan)mapSpan
                                                mapViewSize:(CGSize)mapViewSize
 {
-#warning seems to work just as planned
     NSMutableArray * result = [NSMutableArray new];
     for(ADMapCluster * child in self.children){
        if([self hasPlaceForCluster:child allClusters:allClusters newLevelClusters:newLevelClusters mapSpan:mapSpan mapViewSize:mapViewSize]){
@@ -400,11 +351,11 @@ static NSInteger mapPointCalculations;
     return result;
 }
 
-- (NSArray *)findChildrenInMapSpan:(MKCoordinateSpan)mapSpan
+- (NSMutableArray *)findChildrenInMapSpan:(MKCoordinateSpan)mapSpan
                        mapViewSize:(CGSize)mapViewSize
 {
     NSDate * date = [NSDate date];
-#warning seems to work just as planned
+
     heavyOperationsCount = 0;
     mapPointCalculations = 0;
     
@@ -571,7 +522,6 @@ static NSInteger mapPointCalculations;
 - (NSString *)description
 {
     return [NSString stringWithFormat:@"%f, %f", self.clusterCoordinate.latitude, self.clusterCoordinate.longitude];
-//    return [self title];
 }
 
 - (NSMutableArray *)originalAnnotations
@@ -586,6 +536,27 @@ static NSInteger mapPointCalculations;
     }
     return originalAnnotations;
 }
+
+- (NSMutableArray *) originalAnnotationsWithVisibleGroups:(NSArray *)otherVisible
+{
+    NSMutableArray * originalAnnotations = [NSMutableArray new];
+    if (self.annotation) {
+        [originalAnnotations addObject:self.annotation.annotation];
+    } else {
+        for(ADMapCluster * child in self.children){
+            if(![otherVisible containsObject:child]){
+                [originalAnnotations addObjectsFromArray:[child originalAnnotationsWithVisibleGroups:otherVisible]];
+            }
+        }
+    }
+    return originalAnnotations;
+}
+
+- (void) updateVisibleOriginalAnnotationsWithVisibleGroups:(NSArray *)otherVisible
+{
+    _visibleOriginalAnnotations = [self originalAnnotationsWithVisibleGroups:otherVisible];
+}
+
 @end
 
 @implementation ADMapCluster (Private)
