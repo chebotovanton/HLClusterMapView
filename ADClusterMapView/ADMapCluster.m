@@ -451,7 +451,8 @@ static NSInteger mapPointCalculations;
     return annotations;
 }
 
-- (NSArray *)children {
+- (NSArray *)children
+{
     NSMutableArray * children = [[NSMutableArray alloc] initWithCapacity:2];
     if (_leftChild != nil) {
         [children addObject:_leftChild];
@@ -467,7 +468,8 @@ static NSInteger mapPointCalculations;
     return _depth < mapCluster.depth && (_leftChild == mapCluster || _rightChild == mapCluster || [_leftChild isAncestorOf:mapCluster] || [_rightChild isAncestorOf:mapCluster]);
 }
 
-- (BOOL)isRootClusterForAnnotation:(id<MKAnnotation>)annotation {
+- (BOOL)isRootClusterForAnnotation:(id<MKAnnotation>)annotation
+{
     return _annotation.annotation == annotation || [_leftChild isRootClusterForAnnotation:annotation] || [_rightChild isRootClusterForAnnotation:annotation];
 }
 
@@ -539,6 +541,7 @@ static NSInteger mapPointCalculations;
 
 - (NSMutableArray *) originalAnnotationsWithVisibleGroups:(NSArray *)otherVisible
 {
+#warning must-a be a-goddam slow thing.
     NSMutableArray * originalAnnotations = [NSMutableArray new];
     if (self.annotation) {
         [originalAnnotations addObject:self.annotation.annotation];

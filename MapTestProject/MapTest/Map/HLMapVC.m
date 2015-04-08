@@ -53,18 +53,20 @@
 	
 	self.resultMapView.delegate = self;
     
-//    NSArray * variants = [self createFakeVariants];
-//    [self.resultMapView setupWithFilteredVariants:variants];
-    NSArray * variants = [[HLVariantsManager new] loadSavedVariants];
+    NSArray * variants = [self createFakeVariants];
     [self.resultMapView setupWithFilteredVariants:variants];
+//    NSArray * variants = [[HLVariantsManager new] loadSavedVariants];
+//    [self.resultMapView setupWithFilteredVariants:variants];
 }
 
 - (NSArray *) createFakeVariants
 {
     NSMutableArray * result = [NSMutableArray new];
     
-    [result addObject:[self variantWithLatitude:55.0 longitude:73.0 name:@"hotel 1" price:@10000]];
-    [result addObject:[self variantWithLatitude:55.0 longitude:73.1 name:@"hotel 2" price:@999999999]];
+    [result addObject:[self variantWithLatitude:55.0 longitude:73.0 name:@"hotel 1" price:@100]];
+    [result addObject:[self variantWithLatitude:55.0 longitude:73.1 name:@"hotel 2" price:@200]];
+    [result addObject:[self variantWithLatitude:55.0 longitude:73.1 name:@"hotel 2" price:@300]];
+    [result addObject:[self variantWithLatitude:55.1 longitude:73.1 name:@"hotel 2" price:@400]];
     
     return result;
 }
