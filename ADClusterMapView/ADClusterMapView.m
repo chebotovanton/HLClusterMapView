@@ -316,8 +316,8 @@
                 isAncestor = YES;
                 break;
             }
-            for (ADMapCluster * newCluster in clustersToShowOnMap) { // is the current annotation cluster an ancestor of one of the clustersToShowOnMap?
-                if ([annotation.cluster isAncestorOf:newCluster]) {
+            for (ADMapCluster * newCluster in clustersToShowOnMap) {
+                if ([annotation.cluster isAncestorOf:newCluster]) { // find remote visible cluster annotation and animation start point
                     
                     ADClusterAnnotation * availableAnnotation = [availableSingleAnnotations lastObject];
                     [availableSingleAnnotations removeLastObject];
@@ -383,30 +383,32 @@
 #warning remote clusters vs converging
         BOOL didAlreadyFindAChild = NO;
         for (__strong ADClusterAnnotation * annotation in _clusterAnnotations) {
-            if (![annotation isKindOfClass:[MKUserLocation class]]) {
-                if (annotation.cluster && ![annotation isKindOfClass:[MKUserLocation class]]) {
-                    if ([cluster isAncestorOf:annotation.cluster]) {
-                        if (annotation.type == ADClusterAnnotationTypeLeaf) { // replace this annotation by a cluster one
-                            ADClusterAnnotation * clusterAnnotation = [availableClusterAnnotations lastObject];
-                            [availableClusterAnnotations removeLastObject];
-                            clusterAnnotation.cluster = cluster;
-                            // Setting the coordinate makes us call viewForAnnotation: right away, so make sure the cluster is set
-                            clusterAnnotation.coordinate = annotation.coordinate;
-                            [availableSingleAnnotations addObject:annotation];
-                            annotation = clusterAnnotation;
-                        } else {
-                            annotation.cluster = cluster;
-                        }
-                        if (didAlreadyFindAChild) {
-                            annotation.shouldBeRemovedAfterAnimation = YES;
-                        }
-                        if (ADClusterCoordinate2DIsOffscreen(annotation.coordinate)) {
-                            annotation.coordinate = annotation.cluster.clusterCoordinate;
-                        }
-                        didAlreadyFindAChild = YES;
+            if ([annotation isKindOfClass:[MKUserLocation class]]) {
+                continue;
+            }
+            if (annotation.cluster) {
+                if ([cluster isAncestorOf:annotation.cluster]) {
+                    if (annotation.type == ADClusterAnnotationTypeLeaf) { // replace this annotation by a cluster one
+                        ADClusterAnnotation * clusterAnnotation = [availableClusterAnnotations lastObject];
+                        [availableClusterAnnotations removeLastObject];
+                        clusterAnnotation.cluster = cluster;
+                        // Setting the coordinate makes us call viewForAnnotation: right away, so make sure the cluster is set
+                        clusterAnnotation.coordinate = annotation.coordinate;
+                        [availableSingleAnnotations addObject:annotation];
+                        annotation = clusterAnnotation;
+                    } else {
+                        annotation.cluster = cluster;
                     }
+                    if (didAlreadyFindAChild) {
+                        annotation.shouldBeRemovedAfterAnimation = YES;
+                    }
+                    if (ADClusterCoordinate2DIsOffscreen(annotation.coordinate)) {
+                        annotation.coordinate = annotation.cluster.clusterCoordinate;
+                    }
+                    didAlreadyFindAChild = YES;
                 }
             }
+            
         }
     }
     
@@ -419,18 +421,22 @@
     }
     for (ADClusterAnnotation * annotation in availableClusterAnnotations) {
         NSAssert(annotation.type == ADClusterAnnotationTypeCluster, @"Inconsistent annotation type!");
-        if (annotation.cluster) {
+#warning azazaz
+//        if (annotation.cluster) {
             [annotation reset];
-        }
+//        }
     }
-#warning debug
 	[UIView animateWithDuration:0.3
 						  delay:0.0
 						options:UIViewAnimationOptionBeginFromCurrentState |
 							UIViewAnimationOptionAllowUserInteraction
 					 animations:^{
 						 for (ADClusterAnnotation * annotation in _clusterAnnotations) {
-							 if (![annotation isKindOfClass:[MKUserLocation class]] && annotation.cluster) {
+                             if ([annotation isKindOfClass:[MKUserLocation class]]) {
+                                 continue;
+                             }
+							 if (annotation.cluster) {
+#warning too many annotations with cluster at this point!
 									NSAssert(!ADClusterCoordinate2DIsOffscreen(annotation.coordinate), @"annotation.coordinate not valid! Can't animate from an invalid coordinate (inconsistent result)!");
 								 annotation.coordinate = annotation.cluster.clusterCoordinate;
 							 }
